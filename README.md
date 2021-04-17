@@ -100,4 +100,8 @@ Features:
  Argument for Flask object tells it where to look for templates, static files, and so on. Use __name__ for a single module.
  route() decorator specifies which URL will call that function.
  
+ Make the server available in LAN:
+ 
+ app.run(host='0.0.0.0')
+ 
  
