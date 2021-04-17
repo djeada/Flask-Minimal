@@ -96,4 +96,8 @@ Features:
   if __name__ == "__main__":
     app.run()
   ```
+  
+ Argument for Flask object tells it where to look for templates, static files, and so on. Use __name__ for a single module.
+ route() decorator specifies which URL will call that function.
+ 
  
