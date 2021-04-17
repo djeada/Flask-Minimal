@@ -17,6 +17,7 @@ HyperText Markup Language
 
 A simple HTML document:
 
+```html
 <!DOCTYPE html>
 <html>
   
@@ -29,15 +30,17 @@ A simple HTML document:
   </body>
   
  </html>
+```
  
  HTML Forms
  
+ ```html
  <form>
   
   <!-- form elements -->
   
   </form>
-  
+```  
   
   - text input
   - checkboxes
@@ -46,6 +49,7 @@ A simple HTML document:
  
  <form>
   
+ ```html
  First name: <br>
  <input type="text" name="firstname">
  <br>
@@ -55,14 +59,16 @@ A simple HTML document:
  Password:<br>
  <input type="password" name="password">
  </form>
+ ```
  
- 
+  ```html
  <form action="http://www.bing.com/search" method="GET">
   Bing search:<br>
   <input type="text" name="q" value="Search">
   <br>
   <input type="submit" value="Submit">
   </form>
+  ```
   
   What is Flask?
 Flask is a micro web application framework.
@@ -79,7 +85,7 @@ Features:
 - no db abstraction layer, no form validation
  
  FLask Hello World
- 
+   ```Python
  from flask import Flask
  app = Flask(__name__)
  
@@ -89,5 +95,5 @@ Features:
   
   if __name__ == "__main__":
     app.run()
- 
+  ```
  
