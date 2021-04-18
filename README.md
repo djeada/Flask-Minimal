@@ -1,5 +1,5 @@
 # Flask-Basic
-Learn how to create a basic Flask web app.
+Learn how to make a simple Flask web app.
 
 <h1>The Hypertext Transfer Protocol</h1>
 The Hypertext Transfer Protocol (HTTP) is designed to enable comunication between clients and servers.
@@ -118,3 +118,55 @@ The decorator route() specifies which URL will call that function.
  app.run(host='0.0.0.0')
  ```
  
+<h2>Templates</h2>
+
+Templates allow you to separate the logic of your project from the layout and presentation.
+
+Let's look at an example index.html file:
+
+ ```html
+<html> 
+  <head> 
+    <title>{{ title }} - microblog</title> 
+  </head> 
+  <body> 
+    <h1>Hello, {{ user.username }}!</h1> 
+  </body> 
+</html>
+```
+
+All templates consist of regular html with dynamic parts enclosed with {{…}}.
+Variables are passed to the template from Python code.
+
+ ```Python
+@app.route(‘/’)
+def index(): 
+  user = {“name”:”admin”} 
+  return render_template(‘index.html’, title=’Title Page’, user=user)
+```
+
+Flask uses Jinja2 templating engine.
+
+The fact that Jinja2 supports control statements inside: %...% blocks is what makes it so powerful.
+
+ ```html
+<html> 
+  <head> 
+    {% if title %} 
+      <title> {{title}} - microblog </title> 
+    {% else %} 
+      <title> Welcome! </title> 
+    {% endif %}
+  </head> 
+</html>
+```
+
+You can even create simple loops:
+
+ ```html
+{% for i in range(11) %}
+ {{ i }}
+{% endfor %}
+```
+
+Last but not least, Jinja2's template inheritance feature allows us to move the page layout components that are shared by all templates and place them in a base template from which all other templates are derived.
