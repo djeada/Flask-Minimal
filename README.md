@@ -1,13 +1,13 @@
 # Flask-Basic
 
-The Hypertext Transfer Protocol
+<h1>The Hypertext Transfer Protocol</h1>
 The Hypertext Transfer Protocol (HTTP) is designed to enable comunication between clients and servers.
 
 Two common methods:
 - GET: Requests data from server (ex. typing in google search engine)
 - POST: Submits data to be processed by the server (ex. clicking submit button on bank page)
 
-HyperText Markup Language
+<h1>HyperText Markup Language </h1>
 
 - Used for every website on the internet.
 - Your browser knows how to render it.
@@ -32,7 +32,7 @@ A simple HTML document:
  </html>
 ```
  
- HTML Forms
+<h2> HTML Forms </h2>
  
  ```html
  <form>
@@ -48,6 +48,8 @@ A simple HTML document:
   - submit buttons
  
  <form>
+
+A simple example:
   
  ```html
  First name: <br>
@@ -61,6 +63,8 @@ A simple HTML document:
  </form>
  ```
  
+ Another example:
+
   ```html
  <form action="http://www.bing.com/search" method="GET">
   Bing search:<br>
@@ -70,8 +74,10 @@ A simple HTML document:
   </form>
   ```
   
-  What is Flask?
+<h1>What is Flask?</h1>
 Flask is a micro web application framework.
+Flask is only the foundation for adding functionality.
+If you want more functionality you must install addons.
 
 You can use Flask to:
 - build a static website
@@ -84,7 +90,8 @@ Features:
 - open source
 - no db abstraction layer, no form validation
  
- FLask Hello World
+ <h2>Flask Hello World</h2>
+ 
    ```Python
  from flask import Flask
  app = Flask(__name__)
@@ -97,11 +104,16 @@ Features:
     app.run()
   ```
   
- Argument for Flask object tells it where to look for templates, static files, and so on. Use __name__ for a single module.
- route() decorator specifies which URL will call that function.
+ All flask apps are instances of Flask class.
+ The argument for Flask object tells it where to look for templates, static files, and so on. Use __name__ for a single module.
  
- Make the server available in LAN:
+The handlers that respond to requests from web browsers or other clients are known as views. Python functions are used to write handlers. Every view function corresponds to one or more request URLs. 
+The decorator route() specifies which URL will call that function.
  
+ 
+ <h2>Make the server available in LAN: </h2>
+ 
+ ```Python
  app.run(host='0.0.0.0')
- 
+ ```
  
