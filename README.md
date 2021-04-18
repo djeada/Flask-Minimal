@@ -77,7 +77,7 @@ A simple example:
 <h1>What is Flask?</h1>
 Flask is a micro web application framework.
 Flask is only the foundation for adding functionality.
-If you want more functionality you must install addons. </br>
+If you want more functionality you must install addons. <br>
 
 You can use Flask to:
 - build a static website
