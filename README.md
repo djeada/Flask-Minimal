@@ -23,8 +23,8 @@ TABLE OF CONTENTS
  
     $ git clone https://github.com/djeada/Minimal-Flask-App.git
     $ cd Minimal-Flask-App
-    $ python3 -m venv myenv
-    $ source myenv/bin/activate
+    $ python3 -m venv env
+    $ source env/bin/activate
     $ python3 src/main.py
 
 <h1>The Hypertext Transfer Protocol</h1>
