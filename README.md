@@ -1,4 +1,4 @@
-# Flask-Basic
+# Minimal-Flask-App
 
 VERY MINIMAL:
 
