@@ -19,14 +19,6 @@ TABLE OF CONTENTS
 2. PROJECT SPECIFIACTION
 3. USAGE
 
-<h1>Installation</h1>
- 
-    $ git clone https://github.com/djeada/Minimal-Flask-App.git
-    $ cd Minimal-Flask-App
-    $ python3 -m venv env
-    $ source env/bin/activate
-    $ python3 src/main.py
-
 <h1>The Hypertext Transfer Protocol</h1>
 The Hypertext Transfer Protocol (HTTP) is designed to enable comunication between clients and servers.
 
@@ -190,14 +182,19 @@ You can even create simple loops:
 
 Last but not least, Jinja2's template inheritance feature allows us to move the page layout components that are shared by all templates and place them in a base template from which all other templates are derived.
 
- <h2>Running the app</h2>
- 
- ```Bash
-python app.py
- ```
 
- <h2>Make the server available on LAN: </h2>
+<h1>Installation</h1>
  
+    $ git clone https://github.com/djeada/Minimal-Flask-App.git
+    $ cd Minimal-Flask-App
+    $ python3 -m venv env
+    $ source env/bin/activate
+    $ python3 src/main.py
+
+ <h2>Make the server available on LAN </h2>
+ 
+Modify the code where the <code>run</code> method is called on the Flask instance (here named app): 
+
  ```Python
  app.run(host='0.0.0.0')
  ```
@@ -205,15 +202,9 @@ python app.py
 <h1>Documentation</h1>
 The documentation is built with Sphinx.
 
-  cd docs
-  sphinx-quickstart
-  vim conf.py
-  vim index.rst
-  sphinx-apidoc -o . ..
-  make html
-  
-
-
-TODO:
-
-* https://hackersandslackers.com/flask-routes
+    cd docs
+    sphinx-quickstart
+    vim conf.py
+    vim index.rst
+    sphinx-apidoc -o . ..
+    make html
