@@ -1,5 +1,31 @@
 # Flask-Basic
+
+VERY MINIMAL:
+
+ ```Python
+from flask import Flask
+app = Flask(name)
+@app.route("/")
+def main():
+    return "Hello World"
+```  
+
+but we need a bit more to get started on a serious project.
+
 Learn how to make a simple Flask web app.
+
+TABLE OF CONTENTS
+1. ABOUT FLASK
+2. PROJECT SPECIFIACTION
+3. USAGE
+
+<h1>Installation</h1>
+ 
+    $ git clone https://github.com/djeada/Minimal-Flask-App.git
+    $ cd Minimal-Flask-App
+    $ python3 -m venv myenv
+    $ source myenv/bin/activate
+    $ python3 src/main.py
 
 <h1>The Hypertext Transfer Protocol</h1>
 The Hypertext Transfer Protocol (HTTP) is designed to enable comunication between clients and servers.
@@ -111,13 +137,6 @@ Features:
 The handlers that respond to requests from web browsers or other clients are known as views. Python functions are used to write handlers. Every view function corresponds to one or more request URLs. 
 The decorator route() specifies which URL will call that function.
  
- 
- <h2>Make the server available in LAN: </h2>
- 
- ```Python
- app.run(host='0.0.0.0')
- ```
- 
 <h2>Templates</h2>
 
 Templates allow you to separate the logic of your project from the layout and presentation.
@@ -170,3 +189,31 @@ You can even create simple loops:
 ```
 
 Last but not least, Jinja2's template inheritance feature allows us to move the page layout components that are shared by all templates and place them in a base template from which all other templates are derived.
+
+ <h2>Running the app</h2>
+ 
+ ```Bash
+python app.py
+ ```
+
+ <h2>Make the server available on LAN: </h2>
+ 
+ ```Python
+ app.run(host='0.0.0.0')
+ ```
+
+<h1>Documentation</h1>
+The documentation is built with Sphinx.
+
+  cd docs
+  sphinx-quickstart
+  vim conf.py
+  vim index.rst
+  sphinx-apidoc -o . ..
+  make html
+  
+
+
+TODO:
+
+* https://hackersandslackers.com/flask-routes
