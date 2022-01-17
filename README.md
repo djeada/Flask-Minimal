@@ -192,7 +192,7 @@ Last but not least, Jinja2's template inheritance feature allows us to move the 
     $ cd Minimal-Flask-App
     $ python3 -m venv env
     $ source env/bin/activate
-    $ python3 src/main.py
+    $ python3 src/app.py
 
  ## Make the server available on LAN 
  
