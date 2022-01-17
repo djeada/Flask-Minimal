@@ -1,6 +1,12 @@
 # Minimal-Flask-App
 
-VERY MINIMAL:
+This is a template for a minimal Flask app. It includes Dockerfile, Makefile, pyproject.toml and set of dependencies defined in requirements.txt.
+
+# Problem description
+
+When creating a new Flask app, it is often useful to have a template that can be used to start from. 
+
+The bare minmal Flask app consits of only a few lines of code:
 
  ```Python
 from flask import Flask
@@ -10,29 +16,23 @@ def main():
     return "Hello World"
 ```  
 
-but we need a bit more to get started on a serious project.
+We usually want a bit more than that. That's why I decided to create this template.
 
-Learn how to make a simple Flask web app.
+# Theory
 
-TABLE OF CONTENTS
-1. ABOUT FLASK
-2. PROJECT SPECIFIACTION
-3. USAGE
-
-<h1>The Hypertext Transfer Protocol</h1>
+## The Hypertext Transfer Protocol
 The Hypertext Transfer Protocol (HTTP) is designed to enable comunication between clients and servers.
 
 Two common methods:
 - GET: Requests data from server (ex. typing in google search engine)
 - POST: Submits data to be processed by the server (ex. clicking submit button on bank page)
 
-<h1>HyperText Markup Language </h1>
+## HyperText Markup Language 
 
 - Used for every website on the internet.
 - Your browser knows how to render it.
 - Developed by the World Wide Web Consortium.
 - Current version HTML5.
-
 
 A simple HTML document:
 
@@ -51,7 +51,7 @@ A simple HTML document:
  </html>
 ```
  
-<h2> HTML Forms </h2>
+## HTML Forms 
  
  ```html
  <form>
@@ -93,7 +93,7 @@ A simple example:
   </form>
   ```
   
-<h1>What is Flask?</h1>
+## What is Flask?
 Flask is a micro web application framework.
 Flask is only the foundation for adding functionality.
 If you want more functionality you must install addons. <br>
@@ -109,7 +109,7 @@ Features:
 - open source
 - no db abstraction layer, no form validation
  
- <h2>Flask Hello World</h2>
+ ##Flask Hello World
  
    ```Python
  from flask import Flask
@@ -129,7 +129,7 @@ Features:
 The handlers that respond to requests from web browsers or other clients are known as views. Python functions are used to write handlers. Every view function corresponds to one or more request URLs. 
 The decorator route() specifies which URL will call that function.
  
-<h2>Templates</h2>
+## Templates
 
 Templates allow you to separate the logic of your project from the layout and presentation.
 
@@ -141,7 +141,7 @@ Let's look at an example index.html file:
     <title>{{ title }} - microblog</title> 
   </head> 
   <body> 
-    <h1>Hello, {{ user.username }}!</h1> 
+    # Hello, {{ user.username }}! 
   </body> 
 </html>
 ```
@@ -182,8 +182,7 @@ You can even create simple loops:
 
 Last but not least, Jinja2's template inheritance feature allows us to move the page layout components that are shared by all templates and place them in a base template from which all other templates are derived.
 
-
-<h1>Installation</h1>
+# Installation
  
     $ git clone https://github.com/djeada/Minimal-Flask-App.git
     $ cd Minimal-Flask-App
@@ -191,7 +190,7 @@ Last but not least, Jinja2's template inheritance feature allows us to move the 
     $ source env/bin/activate
     $ python3 src/main.py
 
- <h2>Make the server available on LAN </h2>
+ ## Make the server available on LAN 
  
 Modify the code where the <code>run</code> method is called on the Flask instance (here named app): 
 
@@ -199,7 +198,7 @@ Modify the code where the <code>run</code> method is called on the Flask instanc
  app.run(host='0.0.0.0')
  ```
 
-<h1>Documentation</h1>
+# Documentation
 The documentation is built with Sphinx.
 
     cd docs
