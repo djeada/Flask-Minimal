@@ -37,7 +37,7 @@ def show_user_profile(username: str) -> str:
 
 @app.route("/pots/")
 @app.route("/post/<name>")
-def post(name: Union[str, None]=None) -> str:
+def post(name: Union[str, None] = None) -> str:
     """
     Show a post. This will be served as an HTML page.
     :param name: The name of the post to show.
@@ -70,6 +70,6 @@ def handle_login() -> str:
 
 
 if __name__ == "__main__":
-    # Run the Flask development server i.e. debug mode is on. 
+    # Run the Flask development server i.e. debug mode is on.
     # This will allow you to make changes to the code and see the changes immediately.
     app.run()
