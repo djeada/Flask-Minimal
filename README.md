@@ -209,7 +209,7 @@ Sphinx is used to create the documentation.
 
 If documentation has not yet been created, use:
 
-    mkdir -p docs & cd docs
+    mkdir -p docs && cd docs
     sphinx-quickstart
     sphinx-apidoc -o . ..
     make html
