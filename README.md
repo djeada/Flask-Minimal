@@ -203,11 +203,24 @@ Modify the code where the <code>run</code> method is called on the Flask instanc
  ```
 
 # Documentation
-The documentation is built with Sphinx.
 
-    cd docs
+Sphinx is used to create the documentation.
+
+If documentation has not yet been created, use:
+
+    mkdir -p docs & cd docs
     sphinx-quickstart
-    vim conf.py
-    vim index.rst
     sphinx-apidoc -o . ..
+    make html
+    
+To change the configuration, use:
+
+    vim docs/source/conf.py
+
+To alter the contents of a file, for example, <code>docs/soruce/index.rst</code>, use:
+
+    vim docs/source/index.rst
+
+To update the documentation, use:
+
     make html
