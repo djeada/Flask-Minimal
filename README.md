@@ -224,3 +224,7 @@ To alter the contents of a file, for example, <code>docs/soruce/index.rst</code>
 To update the documentation, use:
 
     make html
+
+To view the documentation, use:
+
+    firefox docs/build/html/index.html 
