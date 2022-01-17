@@ -39,26 +39,26 @@ A simple HTML document:
 ```html
 <!DOCTYPE html>
 <html>
-  
-  <head>
-  <title>Title of your page.</title>
-  </head>
-  
-  <body>
-  <p>Hello world!</p>
-  </body>
-  
- </html>
+
+<head>
+    <title>Title of your page.</title>
+</head>
+
+<body>
+    <p>Hello world!</p>
+</body>
+
+</html>
 ```
  
 ## HTML Forms 
  
  ```html
- <form>
-  
-  <!-- form elements -->
-  
-  </form>
+<form>
+
+    <!-- form elements -->
+
+</form>
 ```  
   
   - text input
@@ -70,28 +70,27 @@ A simple HTML document:
 
 A simple example:
   
- ```html
- First name: <br>
- <input type="text" name="firstname">
- <br>
- Last name:<br>
- <input type="text" name="lastname">
- <br>
- Password:<br>
- <input type="password" name="password">
- </form>
- ```
+```html
+First name: <br>
+<input type="text" name="firstname">
+<br> Last name:<br>
+<input type="text" name="lastname">
+<br> Password:
+<br>
+<input type="password" name="password">
+</form>
+```
  
- Another example:
+Another example:
 
-  ```html
- <form action="http://www.bing.com/search" method="GET">
-  Bing search:<br>
-  <input type="text" name="q" value="Search">
-  <br>
-  <input type="submit" value="Submit">
-  </form>
-  ```
+```html
+<form action="http://www.bing.com/search" method="GET">
+    Bing search:<br>
+    <input type="text" name="q" value="Search">
+    <br>
+    <input type="submit" value="Submit">
+</form>
+```
   
 ## What is Flask?
 Flask is a micro web application framework.
@@ -109,19 +108,19 @@ Features:
 - open source
 - no db abstraction layer, no form validation
  
- ##Flask Hello World
- 
-   ```Python
- from flask import Flask
- app = Flask(__name__)
- 
- @app.route("/")
- def hello():
+## Flask Hello World
+
+```Python
+from flask import Flask
+app = Flask(__name__)
+
+@app.route("/")
+def hello():
   return "Hello World!"
-  
-  if __name__ == "__main__":
-    app.run()
-  ```
+
+if __name__ == "__main__":
+  app.run()
+```
   
  All flask apps are instances of Flask class.
  The argument for Flask object tells it where to look for templates, static files, and so on. Use __name__ for a single module.
@@ -135,14 +134,17 @@ Templates allow you to separate the logic of your project from the layout and pr
 
 Let's look at an example index.html file:
 
- ```html
-<html> 
-  <head> 
-    <title>{{ title }} - microblog</title> 
-  </head> 
-  <body> 
-    # Hello, {{ user.username }}! 
-  </body> 
+```html
+<html>
+
+<head>
+    <title>{{ title }} - microblog</title>
+</head>
+
+<body>
+    # Hello, {{ user.username }}!
+</body>
+
 </html>
 ```
 
@@ -160,15 +162,17 @@ Flask uses Jinja2 templating engine.
 
 The fact that Jinja2 supports control statements inside: %...% blocks is what makes it so powerful.
 
- ```html
-<html> 
-  <head> 
-    {% if title %} 
-      <title> {{title}} - microblog </title> 
-    {% else %} 
-      <title> Welcome! </title> 
+```html
+<html>
+
+<head>
+    {% if title %}
+    <title> {{title}} - microblog </title>
+    {% else %}
+    <title> Welcome! </title>
     {% endif %}
-  </head> 
+</head>
+
 </html>
 ```
 
