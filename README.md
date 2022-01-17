@@ -190,6 +190,7 @@ Last but not least, Jinja2's template inheritance feature allows us to move the 
  
     $ git clone https://github.com/djeada/Minimal-Flask-App.git
     $ cd Minimal-Flask-App
+    $ virtualenv env
     $ source env/bin/activate
     $ pip install -r requirements.txt
     $ python src/app.py
