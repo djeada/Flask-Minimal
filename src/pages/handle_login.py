@@ -4,6 +4,7 @@ from src.pages import user_page
 
 handle_login = Blueprint("handle_login", __name__)
 
+
 @handle_login.route("/handle_login", methods=["POST"])
 def render_handle_login() -> str:
     """

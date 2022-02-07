@@ -18,5 +18,3 @@ def construct_user_page(users: dict) -> Blueprint:
         return "<h1>Users:</h1><br>{}".format(users_str)
 
     return user_page
-
-    

@@ -6,6 +6,7 @@ from src.pages.index_page import index_page
 from src.pages.user_page import construct_user_page
 from src.rest_api.books import construct_books_api
 
+
 def create_app(users=list(), books=dict()) -> Flask:
     """
     Create the Flask application.
@@ -18,7 +19,7 @@ def create_app(users=list(), books=dict()) -> Flask:
         index_page,
         handle_login,
         construct_user_page(users),
-        construct_books_api(books)
+        construct_books_api(books),
     ]
 
     for page in pages:
@@ -26,19 +27,41 @@ def create_app(users=list(), books=dict()) -> Flask:
 
     return app
 
+
 if __name__ == "__main__":
 
     # Those are just some dummy data to test the application
     # In a real life scenario, you would probably have a database
     users = {"admin": "James Bond", "user": "Agent Smith"}
 
-    books = [ {"id": 1, "title": "The Lord of the Rings", "author": "J.R.R. Tolkien", "year": 1954},
-                {"id": 2, "title": "The Hobbit", "author": "J.R.R. Tolkien", "year": 1937},
-                {"id": 3, "title": "The Silmarillion", "author": "J.R.R. Tolkien", "year": 1977},
-                {"id": 4, "title": "The Fellowship of the Ring", "author": "J.R.R. Tolkien", "year": 1954},
-                {"id": 5, "title": "The Two Towers", "author": "J.R.R. Tolkien", "year": 1954},
-                {"id": 6, "title": "The Return of the King", "author": "J.R.R. Tolkien", "year": 1955},
-             ]
+    books = [
+        {
+            "id": 1,
+            "title": "The Lord of the Rings",
+            "author": "J.R.R. Tolkien",
+            "year": 1954,
+        },
+        {"id": 2, "title": "The Hobbit", "author": "J.R.R. Tolkien", "year": 1937},
+        {
+            "id": 3,
+            "title": "The Silmarillion",
+            "author": "J.R.R. Tolkien",
+            "year": 1977,
+        },
+        {
+            "id": 4,
+            "title": "The Fellowship of the Ring",
+            "author": "J.R.R. Tolkien",
+            "year": 1954,
+        },
+        {"id": 5, "title": "The Two Towers", "author": "J.R.R. Tolkien", "year": 1954},
+        {
+            "id": 6,
+            "title": "The Return of the King",
+            "author": "J.R.R. Tolkien",
+            "year": 1955,
+        },
+    ]
 
     app = create_app(users, books)
 

@@ -29,13 +29,19 @@ def construct_books_api(books: List[dict]) -> Blueprint:
         """
         book_keys = books[0].keys()
 
-        if not request.json or len([True for key in book_keys if key in request.json]) == 0:
+        if (
+            not request.json
+            or len([True for key in book_keys if key in request.json]) == 0
+        ):
             return jsonify({"error": "Invalid book data"}), 400
-        
-        book = { "id": len(books) + 1, "title": request.json["title"], "author": request.json["author"], "year": request.json["year"] }
+
+        book = {
+            "id": len(books) + 1,
+            "title": request.json["title"],
+            "author": request.json["author"],
+            "year": request.json["year"],
+        }
         books.append(book)
         return jsonify(book), 201
 
     return books_api
-
-
