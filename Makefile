@@ -30,7 +30,7 @@ install:
 	if [ ! -d "./.venv" ]; then virtualenv $(VIRTUAL_ENV_DIR); fi
 	chmod u+x $(VIRTUAL_ENV_DIR)/bin/activate
 	. $(VIRTUAL_ENV_DIR)/bin/activate && python -m pip install --upgrade pip setuptools wheel && python -m pip install -r requirements.txt
-	ln -sfn ../src
+	ln -sfn ../src src
 
 .PHONY: run
 run: env
