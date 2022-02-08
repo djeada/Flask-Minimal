@@ -19,8 +19,12 @@ jobs:
         pip install --upgrade pip
         python3.8 -m venv env
         source env/bin/activate
+        apt install virtualenv
         echo "VIRTUAL ENV:" $VIRTUAL_ENV
-    
+        
+    - name: Install virutalenv
+      run: sudo apt install -y virutalenv
+
     - name: Install dependencies
       run: make install
       
