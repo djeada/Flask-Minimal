@@ -15,7 +15,7 @@ jobs:
     - uses: actions/checkout@v2
     
     - name: Install virutalenv
-      run: sudo apt update && sudo apt upgrade && sudo apt install -y python-virtualenv
+      run: sudo apt update && sudo apt upgrade && sudo apt install -y python3-virtualenv
 
     - name: Install dependencies
       run: make install
