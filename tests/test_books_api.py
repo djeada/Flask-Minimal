@@ -9,14 +9,24 @@ books = [
         "year": 1954,
     },
     {"id": 2, "title": "The Hobbit", "author": "J.R.R. Tolkien", "year": 1937},
-    {"id": 3, "title": "The Silmarillion", "author": "J.R.R. Tolkien", "year": 1977},
+    {
+        "id": 3,
+        "title": "The Silmarillion",
+        "author": "J.R.R. Tolkien",
+        "year": 1977,
+    },
     {
         "id": 4,
         "title": "The Fellowship of the Ring",
         "author": "J.R.R. Tolkien",
         "year": 1954,
     },
-    {"id": 5, "title": "The Two Towers", "author": "J.R.R. Tolkien", "year": 1954},
+    {
+        "id": 5,
+        "title": "The Two Towers",
+        "author": "J.R.R. Tolkien",
+        "year": 1954,
+    },
     {
         "id": 6,
         "title": "The Return of the King",
@@ -54,7 +64,11 @@ def test_create_book_api(app):
     with app.test_client() as client:
         response = client.post(
             "/api/v1.0/books",
-            json={"title": "The Hobbit", "author": "J.R.R. Tolkien", "year": 1937},
+            json={
+                "title": "The Hobbit",
+                "author": "J.R.R. Tolkien",
+                "year": 1937,
+            },
         )
         assert response.status_code == 201
         assert response.json == {
@@ -64,6 +78,8 @@ def test_create_book_api(app):
             "year": 1937,
         }
 
-        response = client.post("/api/v1.0/books", json={"wrong_dict_key": "some_data"})
+        response = client.post(
+            "/api/v1.0/books", json={"wrong_dict_key": "some_data"}
+        )
         assert response.status_code == 400
         assert response.json == {"error": "Invalid book data"}

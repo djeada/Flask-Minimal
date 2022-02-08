@@ -1,6 +1,4 @@
-from typing import Union
-from flask import Flask, render_template, request
-
+from flask import Flask
 from src.pages.handle_login import handle_login
 from src.pages.index_page import index_page
 from src.pages.user_page import construct_user_page
@@ -41,7 +39,12 @@ if __name__ == "__main__":
             "author": "J.R.R. Tolkien",
             "year": 1954,
         },
-        {"id": 2, "title": "The Hobbit", "author": "J.R.R. Tolkien", "year": 1937},
+        {
+            "id": 2,
+            "title": "The Hobbit",
+            "author": "J.R.R. Tolkien",
+            "year": 1937,
+        },
         {
             "id": 3,
             "title": "The Silmarillion",
@@ -54,7 +57,12 @@ if __name__ == "__main__":
             "author": "J.R.R. Tolkien",
             "year": 1954,
         },
-        {"id": 5, "title": "The Two Towers", "author": "J.R.R. Tolkien", "year": 1954},
+        {
+            "id": 5,
+            "title": "The Two Towers",
+            "author": "J.R.R. Tolkien",
+            "year": 1954,
+        },
         {
             "id": 6,
             "title": "The Return of the King",
@@ -66,5 +74,6 @@ if __name__ == "__main__":
     app = create_app(users, books)
 
     # Run the Flask development server i.e. debug mode is on.
-    # This will allow you to make changes to the code and see the changes immediately.
+    # This will allow you to make changes to the code and see
+    # the changes immediately.
     app.run()

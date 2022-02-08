@@ -1,6 +1,4 @@
-from flask import Blueprint, render_template, request
-
-from src.pages import user_page
+from flask import Blueprint, request, render_template
 
 handle_login = Blueprint("handle_login", __name__)
 
