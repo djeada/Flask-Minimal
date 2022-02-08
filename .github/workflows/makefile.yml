@@ -14,14 +14,15 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     
-    - name: configure
-      run: ./configure
-      
     - name: Install dependencies
-      run: make
+      run: make install
       
-    - name: Run check
-      run: make check
+    - name: Format
+      run: make format 
       
-    - name: Run distcheck
-      run: make distcheck
+    - name: Lint
+      run: make lint
+  
+    - name: Run
+      run: make run
+      
