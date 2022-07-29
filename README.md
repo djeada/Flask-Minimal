@@ -2,6 +2,25 @@
 
 This is a template for a minimal Flask app. It includes Dockerfile, Makefile, pyproject.toml and set of dependencies defined in requirements.txt.
 
+## Table of Contents
+<!--ts-->
+
+- [Minimal-Flask-App](#Minimal-Flask-App)
+- [Problem-description](#Problem-description)
+- [Theory](#Theory)
+  - [The-Hypertext-Transfer-Protocol](#The-Hypertext-Transfer-Protocol)
+  - [HyperText-Markup-Language](#HyperText-Markup-Language)
+  - [HTML-Forms](#HTML-Forms)
+  - [What-is-Flask?](#What-is-Flask?)
+  - [Flask-Hello-World](#Flask-Hello-World)
+  - [Templates](#Templates)
+- [Installation](#Installation)
+  - [Make-the-server-available-on-LAN](#Make-the-server-available-on-LAN)
+  - [Start-the-app-in-Docker](#Start-the-app-in-Docker)
+- [Documentation](#Documentation)
+
+<!--te-->
+
 # Problem description
 
 When creating a new Flask app, it is often useful to have a template that can be used to start from. 
