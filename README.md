@@ -187,25 +187,56 @@ You can even create simple loops:
 Last but not least, Jinja2's template inheritance feature allows us to move the page layout components that are shared by all templates and place them in a base template from which all other templates are derived.
 
 # Installation
- 
-    $ git clone https://github.com/djeada/Minimal-Flask-App.git
-    $ cd Minimal-Flask-App
-    $ virtualenv env
-    $ source env/bin/activate
-    $ pip install -r requirements.txt
-    $ python src/app.py
 
- ## Make the server available on LAN 
+1. Download the code from the repository:
+    
+```Bash
+git clone https://github.com/djeada/Minimal-Flask-App.git
+cd Minimal-Flask-App
+```
+
+2. Install modules via VENV:
+
+```Bash
+virtualenv env
+source env/bin/activate
+pip install -r requirements.txt
+```
+
+3. Start the app:
+
+```Bash
+python src/app.py
+```
+
+## Make the server available on LAN 
  
 Modify the code where the <code>run</code> method is called on the Flask instance (here named app): 
 
- ```Python
- app.run(host='0.0.0.0')
- ```
+```Python
+app.run(host='0.0.0.0')
+```
+
+##  Start the app in Docker
+
+1. Download the code from the repository:
+    
+```Bash
+git clone https://github.com/djeada/Minimal-Flask-App.git
+cd Minimal-Flask-App
+```
+
+Start the APP in Docker:
+
+```Bash
+docker-compose up --build 
+```
+ 
+In your browser, go to http://localhost:85. The app should now be working. 
 
 # Documentation
 
-Sphinx is used to create the documentation.
+Sphinx is used to generate the documentation from docstrings.
 
 If documentation has not yet been created, use:
 
