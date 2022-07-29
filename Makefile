@@ -46,7 +46,8 @@ format: env
 lint:
 	flake8 src --count \
 			--show-source \
-			--statistics
+			--statistics \
+			--max-line-length 99
 
 
 .PHONY: clean
