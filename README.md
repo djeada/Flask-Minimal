@@ -207,6 +207,8 @@ Last but not least, Jinja2's template inheritance feature allows us to move the 
 
 # Installation
 
+## Set Up for Unix, MacOS
+
 1. Download the code from the repository:
     
 ```Bash
@@ -228,9 +230,7 @@ pip install -r requirements.txt
 python src/app.py
 ```
 
-## Make the server available on LAN 
- 
-Modify the code where the <code>run</code> method is called on the Flask instance (here named app): 
+To make the server available on the LAN, modify the code where the <code>run</code> method is called on the Flask instance (here named app): 
 
 ```Python
 app.run(host='0.0.0.0')
