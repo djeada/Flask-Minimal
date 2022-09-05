@@ -209,7 +209,7 @@ Last but not least, Jinja2's template inheritance feature allows us to move the 
 
 ## Set Up for Unix, MacOS
 
-1. Download the code from the repository:
+1. Download the code repository from GitHub:
     
 ```Bash
 git clone https://github.com/djeada/Minimal-Flask-App.git
