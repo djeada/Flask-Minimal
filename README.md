@@ -1,6 +1,6 @@
 # Flask-Minimal
 
-Flask-Minimal is a template for creating a minimal Flask app. It includes a Dockerfile, Makefile and a set of dependencies defined in requirements.txt.
+The purpose of this template is to provide a starting point for creating new Flask apps that require more than the bare minimum. The README provides instructions for installation on Unix/MacOS as well as using Docker. Additionally, it explains how to generate documentation using Sphinx. 
 
 ## Problem description
 
