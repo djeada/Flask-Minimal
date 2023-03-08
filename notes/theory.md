@@ -108,7 +108,7 @@ For example, let's look at an example index.html file:
 </html>
  ```
  
-All templates consist of regular HTML with dynamic parts enclosed with {{…}} (double curly braces). Variables are passed to the template from Python code, and Jinja2 replaces them with their values.
+All templates consist of regular HTML with dynamic parts enclosed with `{{…}}` (double curly braces). Variables are passed to the template from Python code, and Jinja2 replaces them with their values.
 
 ### Rendering templates
 
@@ -125,11 +125,11 @@ def index():
     return render_template('index.html', title='Home', user=user)
 ```
 
-Here, we are rendering the index.html template and passing it two variables: title and user. Jinja2 will replace {{ title }} with 'Home' and {{ user.username }} with 'John Doe'.
+Here, we are rendering the index.html template and passing it two variables: title and user. Jinja2 will replace `{{ title }}` with 'Home' and `{{ user.username }}` with 'John Doe'.
 
 ### Control statements
 
-Jinja2 supports control statements inside {% … %} blocks. This makes it possible to add conditional logic and loops to your templates.
+Jinja2 supports control statements inside `{% … %}` blocks. This makes it possible to add conditional logic and loops to your templates.
 
 For example, here's how you can use an if statement to conditionally render a title in your template:
 
@@ -152,7 +152,7 @@ For example, here's how you can use an if statement to conditionally render a ti
 </html>
  ```
  
-In this example, we use the {% if … %} and {% else %} control statements to check whether the title variable is defined. If it is, we render the title with {{ title }}; otherwise, we use a default title. We also use a conditional statement to only display the user's username if the user variable is defined.
+In this example, we use the `{% if … %}` and `{% else %}` control statements to check whether the title variable is defined. If it is, we render the title with `{{ title }};` otherwise, we use a default title. We also use a conditional statement to only display the user's username if the user variable is defined.
 
 You can also use loops to generate dynamic content. For example, here's how you can create a loop that displays a list of items:
 
@@ -173,4 +173,4 @@ You can also use loops to generate dynamic content. For example, here's how you 
 </html>
  ```
  
-In this example, we use the {% for … in … %} and {% endfor %} control statements to create a loop that iterates over a list of items. For each item, we render an <li> element with the item's value.
+In this example, we use the `{% for … in … %}` and `{% endfor %}` control statements to create a loop that iterates over a list of items. For each item, we render an `<li>` element with the item's value.
