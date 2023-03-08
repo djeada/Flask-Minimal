@@ -1,8 +1,8 @@
-#  Flask-Minimal
+# Flask-Minimal
 
-This is a template for a minimal Flask app. It includes Dockerfile, Makefile, pyproject.toml and set of dependencies defined in requirements.txt.
+Flask-Minimal is a template for creating a minimal Flask app. It includes a Dockerfile, Makefile and a set of dependencies defined in requirements.txt.
 
-# Problem description
+## Problem description
 
 When creating a new Flask app, it is often useful to have a template that can be used to start from. 
 
@@ -20,19 +20,19 @@ We usually want a bit more than that. That's why I decided to create this templa
 
 # Installation
 
-## Set Up for Unix, MacOS
+## Setup for Unix, MacOS
 
 1. Download the code repository from GitHub:
     
 ```Bash
-git clone https://github.com/djeada/Minimal-Flask-App.git
-cd Minimal-Flask-App
+git clone https://github.com/djeada/Flask-Minimal.git
+cd Flask-Minimal
 ```
 
-2. Install modules via VENV:
+2. Install dependencies in a virtual environment:
 
 ```Bash
-virtualenv env
+python -m venv env
 source env/bin/activate
 pip install -r requirements.txt
 ```
@@ -43,7 +43,7 @@ pip install -r requirements.txt
 python src/app.py
 ```
 
-To make the server available on the LAN, modify the code where the <code>run</code> method is called on the Flask instance (here named app): 
+To make the server available on the LAN, modify the code where the run method is called on the Flask instance (here named app):
 
 ```Python
 app.run(host='0.0.0.0')
@@ -54,44 +54,62 @@ app.run(host='0.0.0.0')
 1. Download the code from the repository:
     
 ```Bash
-git clone https://github.com/djeada/Minimal-Flask-App.git
-cd Minimal-Flask-App
+git clone https://github.com/djeada/Flask-Minimal.git
+cd Flask-Minimal
 ```
 
-Start the APP in Docker:
+2. Build the Docker image:
+    
+```Bash
+docker build -t minimal-flask-app .
+```
+
+3. Start a Docker container:
 
 ```Bash
-docker-compose up --build 
+docker run -p 85:5000 minimal-flask-app
 ```
- 
-In your browser, go to http://localhost:85. The app should now be working. 
+
+4. In your browser, go to `http://localhost:85`. The app should now be working.
+
+Note that `-p 85:5000` maps the container's port 5000 to port 85 on the host machine. If you want to use a different port on the host machine, change the first number before the colon.
 
 # Documentation
 
-Sphinx is used to generate the documentation from docstrings.
+Sphinx is a tool that can be used to automatically generate documentation from your project's docstrings. This template includes a basic documentation setup using Sphinx.
 
-If documentation has not yet been created, use:
+## Creating documentation
 
-    mkdir -p docs && cd docs
-    sphinx-quickstart
-    sphinx-apidoc -o . ..
-    make html
-    
-To change the configuration, use:
+If documentation has not yet been created for your project, you can create a basic Sphinx documentation setup using the following steps:
 
-    vim docs/source/conf.py
+```Bash
+mkdir -p docs && cd docs
+sphinx-quickstart
+sphinx-apidoc -o . ..
+make html
+```
 
-To alter the contents of a file, for example, <code>docs/soruce/index.rst</code>, use:
+## Modifying documentation
 
-    vim docs/source/index.rst
+To modify the documentation for this template, you can make changes to the existing `docs/source` directory.
 
-To update the documentation, use:
+* Configuration
 
-    make html
+The Sphinx configuration file is located at `docs/source/conf.py`. You can modify this file to change various settings such as the project name, author, and more.
 
-To view the documentation, use:
+* Content
 
-    firefox docs/build/html/index.html 
+The main content for the documentation is located in `docs/source/index.rst`. You can modify this file to add or remove sections and pages as needed.
+
+* Updating and viewing documentation
+
+To update the documentation after making changes, run the following command from the `docs` directory:
+
+```Bash
+make html
+```
+
+To view the generated HTML documentation, open `docs/build/html/index.html` in a web browser.
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
@@ -99,4 +117,4 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Please make sure to update tests as appropriate.
 
 ## License
-[MIT](https://choosealicense.com/licenses/mit/)
+This project is licensed under the terms of the MIT license. See the [LICENSE](https://choosealicense.com/licenses/mit/) file for details.
