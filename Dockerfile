@@ -1,18 +1,22 @@
-FROM ubuntu:16.04
+# Use an official Python runtime as a parent image
+FROM python:3.10-alpine
 
-MAINTANER Adam Djellouli "addjellouli1@gmail.com"
+# Copy the application files into the image.
+COPY src /src
 
-RUN apt-get update -y && \
-    apt-get install -y python-pip python-dev
+# Set the working directory for the image.
+WORKDIR /
 
-COPY ./requirements.txt src/requirements.txt
+# Copy the application requirements into the image.
+COPY requirements.txt .
 
-WORKDIR /src
+# Install the application dependencies.
+RUN pip install --no-cache-dir -r requirements.txt
 
-RUN pip install -r requirements.txt
+# Expose the port on which the application will run.
+EXPOSE 5000
 
-COPY . /src
+ENV PYTHONPATH "${PYTHONPATH}:/src"
 
-ENTRYPOINT [ "python" ]
-
-CMD [ "app.py" ]
+# Start the Flask application.
+CMD ["python", "/src/app.py", "--host=0.0.0.0"]
