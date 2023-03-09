@@ -1,5 +1,6 @@
 """
-This module defines the Library data class which represents a collection of users and books.
+This module defines the Library data class which represents a collection of
+users and books.
 """
 from dataclasses import dataclass, field
 from typing import List
@@ -14,7 +15,8 @@ class Library:
     A dataclass representing a library with books and users.
 
     :ivar books: A list of Book objects that are present in the library.
-    :ivar users: A list of LibraryUser objects representing the users of the library.
+    :ivar users: A list of LibraryUser objects representing the users of the
+    library.
     """
 
     books: List[Book] = field(default_factory=list)

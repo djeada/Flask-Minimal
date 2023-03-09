@@ -1,9 +1,10 @@
 """
 A Flask API for managing a library of books.
 
-This script defines a Flask Blueprint for managing a library of books, with endpoints for
-rendering the books page, getting a book by ID, creating a new book, and deleting a book by ID.
-The API reads and writes data to a global storage module, which manages the library of books.
+This script defines a Flask Blueprint for managing a library of books, with
+endpoints for rendering the books page, getting a book by ID, creating a new
+book, and deleting a book by ID.The API reads and writes data to a global
+storage module, which manages the library of books.
 
 Endpoints:
     - GET /books: Render the books page.
@@ -12,17 +13,19 @@ Endpoints:
     - DELETE /books/<int:book_id>: Delete a book by ID.
 
 Global Storage:
-    The API reads and writes data to the `src.storage.global_storage` module, which defines
-    functions for reading, adding, updating, and deleting books in the library.
+    The API reads and writes data to the `src.storage.global_storage` module,
+    which defines functions for reading, adding, updating, and deleting books
+    in the library.
 
 Example Usage:
     app.register_blueprint(books_api)
 
-    The Flask application should register the books_api Blueprint to use the API.
+    The Flask application should register the books_api Blueprint to use the
+    API.
 
 Dependencies:
-    This script depends on the Flask and dataclasses modules, as well as the `src.storage.global_storage`
-    module for managing the library of books.
+    This script depends on the Flask and dataclasses modules, as well as the
+    `src.storage.global_storage` module for managing the library of books.
 """
 
 from dataclasses import asdict
@@ -55,8 +58,8 @@ def get_book(book_id: int) -> Tuple[Union[Dict[str, Any], None], int]:
     :param book_id (int): The ID of the book to get.
 
     Returns: A tuple containing the JSON representation
-        of the book (if found) and the HTTP status code (200 if the book was found, 404
-        otherwise).
+        of the book (if found) and the HTTP status code (200 if the book was
+        found, 404 otherwise).
     """
     book = global_storage.read_book(book_id)
     if book is None:
@@ -84,9 +87,10 @@ def delete_book(book_id: int) -> Tuple[Dict[str, str], int]:
 
     :param book_id (int): The ID of the book to delete.
 
-    Returns: Tuple[Dict[str, str], int]: A tuple containing a message indicating that the book was
-        deleted successfully (if found) and the HTTP status code (200 if the book was deleted
-        successfully, 404 if the book was not found).
+    Returns: Tuple[Dict[str, str], int]: A tuple containing a message
+    indicating that the book was deleted successfully (if found) and the HTTP
+    status code (200 if the book was deleted successfully, 404 if the book was
+    not found).
     """
     result: bool = global_storage.delete_book(book_id)
     if result:

@@ -1,11 +1,18 @@
 """
-This script starts a Flask application that allows users to interact with a library. The application allows users to view, borrow and return books, as well as add new books and users to the library. The application uses a global storage object to store the books and users.
+This script starts a Flask application that allows users to interact with a
+library. The application allows users to view, borrow and return books, as well
+ as add new books and users to the library. The application uses a global
+ storage object to store the books and users.
 
-The script defines a function `fill_with_dummy_data` that fills the global storage object with some dummy data for testing purposes.
+The script defines a function `fill_with_dummy_data` that fills the global
+storage object with some dummy data for testing purposes.
 
-The script also defines a function `main` that creates an instance of the `LibraryApp` class and runs the Flask development server in debug mode. Debug mode allows changes to be made to the code and seen immediately.
+The script also defines a function `main` that creates an instance of the
+`LibraryApp` class and runs the Flask development server in debug mode. Debug
+mode allows changes to be made to the code and seen immediately.
 
-To start the application, run this script directly by executing the command `python app.py` in the terminal.
+To start the application, run this script directly by executing the command
+`python app.py` in the terminal.
 """
 
 from src.library_app.library_app import LibraryApp

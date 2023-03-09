@@ -1,5 +1,6 @@
 """
-This module contains a custom Flask application for a library management system.
+This module contains a custom Flask application for a library management
+system.
 """
 from flask import Flask
 
@@ -13,8 +14,9 @@ class LibraryApp(Flask):
     """
     Custom Flask application for library management system.
 
-    This class extends the Flask class to create a custom application for managing a library. It registers all the necessary
-    blueprints to handle user authentication, user api, and a REST API for managing books.
+    This class extends the Flask class to create a custom application for
+    managing a library. It registers all the necessary blueprints to handle
+    user authentication, user api, and a REST API for managing books.
     """
 
     def __init__(self) -> None:
