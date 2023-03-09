@@ -3,6 +3,7 @@
 # Set the Python interpreter and package name
 VENV_NAME = venv
 PYTHON = $(VENV_NAME)/bin/python
+PACKAGE = src
 
 # Define the default target to build and run the Flask app
 all: build run
