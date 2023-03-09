@@ -26,9 +26,9 @@ Dependencies:
 """
 
 from dataclasses import asdict
-from typing import Tuple, Dict, Any, Union
+from typing import Any, Dict, Tuple, Union
 
-from flask import jsonify, Blueprint, request, render_template
+from flask import Blueprint, jsonify, render_template, request
 
 import src.storage.global_storage as global_storage
 

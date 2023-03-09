@@ -16,13 +16,12 @@ Example usage:
     all_users = read_all_users()
     all_books = read_all_books()
 """
-from typing import Dict, List, Optional
 from dataclasses import asdict
+from typing import Dict, List, Optional
 
 from src.models.book import Book
 from src.models.library import Library
 from src.models.user import LibraryUser
-
 
 GLOBAL_STORAGE: Library = Library()
 

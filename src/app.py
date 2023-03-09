@@ -9,7 +9,7 @@ To start the application, run this script directly by executing the command `pyt
 """
 
 from src.library_app.library_app import LibraryApp
-from src.storage.global_storage import add_user_to_library, add_book_to_library
+from src.storage.global_storage import add_book_to_library, add_user_to_library
 
 DEBUG = True
 

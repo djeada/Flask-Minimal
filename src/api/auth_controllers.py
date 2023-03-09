@@ -1,4 +1,5 @@
-from flask import Blueprint, request, render_template, abort
+from flask import Blueprint, abort, render_template, request
+
 import src.storage.global_storage as storage
 
 handle_login = Blueprint("handle_login", __name__)

@@ -1,11 +1,11 @@
 """
 This module defines the Library data class which represents a collection of users and books.
 """
-from .book import Book
-from .user import LibraryUser
-
 from dataclasses import dataclass, field
 from typing import List
+
+from .book import Book
+from .user import LibraryUser
 
 
 @dataclass
