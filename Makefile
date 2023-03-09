@@ -26,7 +26,7 @@ clean-image:
 # Install the Python dependencies
 install:
 	virtualenv $(VENV_NAME)
-	$(PYTHON) -m pip install -r requirements.txtPACKAGE=src
+	$(PYTHON) -m pip install -r requirements.txt
 
 # Run linting and static analysis tools
 lint:
