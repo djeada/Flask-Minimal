@@ -38,3 +38,7 @@ lint:
 # Run tests for the Flask app
 test:
 	$(PYTHON) -m pytest tests/
+
+# Build the documentation
+docs:
+	cd docs && make html
