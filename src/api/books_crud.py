@@ -95,5 +95,4 @@ def delete_book(book_id: int) -> Tuple[Dict[str, str], int]:
     result: bool = global_storage.delete_book(book_id)
     if result:
         return jsonify({"message": "Book deleted successfully."}), 200
-    else:
-        return jsonify({"error": "Book not found."}), 404
+    return jsonify({"error": "Book not found."}), 404
