@@ -74,6 +74,91 @@ docker run -p 85:5000 minimal-flask-app
 
 Note that `-p 85:5000` maps the container's port 5000 to port 85 on the host machine. If you want to use a different port on the host machine, change the first number before the colon.
 
+# API
+
+## Endpoints
+
+### GET /books
+This endpoint returns a list of all books in the library.
+
+To get a list of all books in the library, you can use the following curl command:
+
+```Bash
+curl http://localhost:5000/books
+```
+
+To get a list of all books in the library using JavaScript, you can use the fetch function as follows:
+
+```javascript
+fetch('http://localhost:5000/books')
+  .then(response => response.json())
+  .then(data => console.log(data));
+```
+
+### GET /books/<int:book_id>
+This endpoint returns information about a specific book, specified by its ID.
+
+To get information about a specific book, you can use the following curl command:
+
+```Bash
+curl http://localhost:5000/books/1
+```
+
+To get information about a specific book using JavaScript, you can use the fetch function as follows:
+
+```javascript
+fetch('http://localhost:5000/books/1')
+  .then(response => response.json())
+  .then(data => console.log(data));
+```
+
+### POST /books
+This endpoint allows users to add a new book to the library. Users should submit a JSON object containing the book's title, author, and description.
+
+To add a new book to the library, you can use the following curl command:
+
+```Bash
+curl -X POST -H "Content-Type: application/json" -d '{"title":"New Book", "author":"Author Name", "description":"Book Description"}' http://localhost:5000/books
+```
+
+To add a new book to the library using JavaScript, you can use the fetch function with the POST method as follows:
+
+```javascript
+fetch('http://127.0.0.1:5000/books', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify( {
+            "id": 7,
+            "title": "The Return of the King",
+            "author": "J.R.R. Tolkien",
+            "year": 1955,
+        })
+})
+.then(response => response.json())
+.then(data => console.log(data))
+```
+
+### DELETE /books/<int:book_id>
+This endpoint allows users to delete a book from the library, specified by its ID.
+
+To delete a book from the library, you can use the following curl command:
+
+```Bash
+curl -X DELETE http://localhost:5000/books/1
+```
+
+To delete a book from the library using JavaScript, you can use the fetch function with the DELETE method as follows:
+
+```javascript
+fetch('http://localhost:5000/books/1', {
+  method: 'DELETE'
+})
+  .then(response => response.json())
+  .then(data => console.log(data));
+```
+
 # Documentation
 
 Sphinx is a tool that can be used to automatically generate documentation from your project's docstrings. This template includes a basic documentation setup using Sphinx.
