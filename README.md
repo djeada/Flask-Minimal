@@ -67,12 +67,10 @@ docker build -t minimal-flask-app .
 3. Start a Docker container:
 
 ```Bash
-docker run -p 85:5000 minimal-flask-app
+sudo docker run --network=host minimal-flask-app
 ```
 
-4. In your browser, go to `http://localhost:85`. The app should now be working.
-
-Note that `-p 85:5000` maps the container's port 5000 to port 85 on the host machine. If you want to use a different port on the host machine, change the first number before the colon.
+4. In your browser, go to `http://localhost:5000`. The app should now be working.
 
 # API
 
