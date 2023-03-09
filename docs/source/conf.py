@@ -11,11 +11,12 @@
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
 import sphinx_rtd_theme
-import sys
 import os
+import sys
 
-sys.path.insert(0, os.path.abspath("../../src/"))
-
+# Add the path to the root of your project so Sphinx can find your modules
+basedir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+sys.path.insert(0, basedir)
 
 # -- Project information -----------------------------------------------------
 
