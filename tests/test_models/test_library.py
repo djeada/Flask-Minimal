@@ -1,5 +1,6 @@
-from typing import List
 from dataclasses import asdict
+from typing import List
+
 from pytest import raises
 
 from src.models.book import Book

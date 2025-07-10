@@ -1,14 +1,14 @@
 import pytest
 
 from src.storage.global_storage import (
-    add_user_to_library,
-    user_exists,
-    read_all_books,
     add_book_to_library,
-    retrieve_password,
+    add_user_to_library,
+    read_all_books,
     read_all_users,
     read_book,
     reset_global_storage,
+    retrieve_password,
+    user_exists,
 )
 
 

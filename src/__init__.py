@@ -3,6 +3,7 @@ Application factory for Flask app creation.
 """
 
 from flask import Flask
+
 from src.config import get_config
 from src.extensions import init_extensions
 

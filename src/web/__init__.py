@@ -2,7 +2,8 @@
 Web interface blueprints for the Flask application.
 """
 
-from flask import Blueprint, render_template, jsonify
+from flask import Blueprint, jsonify, render_template
+
 from src.extensions import db
 
 web_bp = Blueprint("web", __name__)

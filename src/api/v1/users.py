@@ -2,12 +2,13 @@
 Users API endpoints.
 """
 
-from flask import Blueprint, request, jsonify
-from flask_jwt_extended import jwt_required, get_jwt_identity
+from flask import Blueprint, jsonify, request
+from flask_jwt_extended import get_jwt_identity, jwt_required
 from marshmallow import Schema, fields
-from src.services.user_service import UserService
-from src.api.decorators import validate_json, admin_required, owner_or_admin_required
+
+from src.api.decorators import admin_required, owner_or_admin_required, validate_json
 from src.exceptions import ValidationError as ServiceValidationError
+from src.services.user_service import UserService
 
 users_bp = Blueprint("users", __name__)
 

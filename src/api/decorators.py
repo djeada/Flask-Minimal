@@ -3,11 +3,13 @@ API decorators for validation and authentication.
 """
 
 from functools import wraps
-from flask import request, jsonify
+
+from flask import jsonify, request
 from flask_jwt_extended import get_jwt, get_jwt_identity
 from marshmallow import ValidationError
-from src.services.user_service import UserService
+
 from src.exceptions import ForbiddenError
+from src.services.user_service import UserService
 
 
 def validate_json(schema_class):

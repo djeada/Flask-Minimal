@@ -4,10 +4,11 @@ CLI commands for the application.
 
 import click
 from flask import current_app
+
 from src.extensions import db
-from src.models import User, Book
-from src.services.user_service import UserService
+from src.models import Book, User
 from src.services.book_service import BookService
+from src.services.user_service import UserService
 
 
 def register_commands(app):

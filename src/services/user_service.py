@@ -2,14 +2,16 @@
 Service layer for user management.
 """
 
-from typing import Optional, List, Dict, Any
 from datetime import datetime, timedelta
+from typing import Any, Dict, List, Optional
+
 from flask import current_app
 from flask_jwt_extended import create_access_token
 from sqlalchemy.exc import IntegrityError
+
+from src.exceptions import ConflictError, NotFoundError, ValidationError
 from src.extensions import db
 from src.models import User
-from src.exceptions import ValidationError, NotFoundError, ConflictError
 
 
 class UserService:

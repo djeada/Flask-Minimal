@@ -2,12 +2,14 @@
 Authentication API endpoints.
 """
 
-from flask import Blueprint, request, jsonify
-from flask_jwt_extended import jwt_required, get_jwt_identity
-from marshmallow import Schema, fields, ValidationError
-from src.services.user_service import UserService
+from flask import Blueprint, jsonify, request
+from flask_jwt_extended import get_jwt_identity, jwt_required
+from marshmallow import Schema, ValidationError, fields
+
 from src.api.decorators import validate_json
-from src.exceptions import ValidationError as ServiceValidationError, UnauthorizedError
+from src.exceptions import UnauthorizedError
+from src.exceptions import ValidationError as ServiceValidationError
+from src.services.user_service import UserService
 
 auth_bp = Blueprint("auth", __name__)
 

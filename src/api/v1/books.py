@@ -2,12 +2,13 @@
 Books API endpoints.
 """
 
-from flask import Blueprint, request, jsonify
-from flask_jwt_extended import jwt_required, get_jwt_identity, get_jwt
+from flask import Blueprint, jsonify, request
+from flask_jwt_extended import get_jwt, get_jwt_identity, jwt_required
 from marshmallow import Schema, fields
-from src.services.book_service import BookService
-from src.api.decorators import validate_json, admin_required
+
+from src.api.decorators import admin_required, validate_json
 from src.exceptions import ValidationError as ServiceValidationError
+from src.services.book_service import BookService
 
 books_bp = Blueprint("books", __name__)
 

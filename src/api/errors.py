@@ -5,6 +5,7 @@ Global error handlers for the application.
 from flask import jsonify
 from marshmallow import ValidationError
 from werkzeug.exceptions import HTTPException
+
 from src.exceptions import LibraryException
 
 

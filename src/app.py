@@ -6,6 +6,7 @@ application factory pattern for better modularity and testing.
 """
 
 import os
+
 from dotenv import load_dotenv
 
 # Load environment variables

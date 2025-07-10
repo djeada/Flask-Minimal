@@ -2,12 +2,14 @@
 Service layer for book management.
 """
 
-from typing import Optional, List, Dict, Any
 from datetime import datetime, timedelta
+from typing import Any, Dict, List, Optional
+
 from sqlalchemy import or_
+
+from src.exceptions import ConflictError, NotFoundError, ValidationError
 from src.extensions import db
 from src.models import Book, BookLoan, User
-from src.exceptions import ValidationError, NotFoundError, ConflictError
 
 
 class BookService:
