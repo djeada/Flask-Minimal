@@ -2,19 +2,22 @@
 CLI commands for the application.
 """
 
+from typing import Any
+
 import click
+from flask import Flask
 
 from src.extensions import db
 from src.services.book_service import BookService
 from src.services.user_service import UserService
 
 
-def register_commands(app):
+def register_commands(app: Flask) -> None:
     """Register CLI commands."""
 
     @app.cli.command()
     @click.option("--drop-first", is_flag=True, help="Drop existing tables first")
-    def init_db(drop_first):
+    def init_db(drop_first: bool) -> None:
         """Initialize the database."""
         if drop_first:
             click.echo("Dropping existing tables...")
@@ -25,7 +28,7 @@ def register_commands(app):
         click.echo("Database initialized successfully!")
 
     @app.cli.command()
-    def seed_db():
+    def seed_db() -> None:
         """Seed the database with sample data."""
         click.echo("Seeding database with sample data...")
 
@@ -131,7 +134,7 @@ def register_commands(app):
     @click.option("--email", prompt=True, help="Admin email")
     @click.option("--password", prompt=True, hide_input=True, help="Admin password")
     @click.option("--name", prompt=True, help="Admin name")
-    def create_admin(email, password, name):
+    def create_admin(email: str, password: str, name: str) -> None:
         """Create an admin user."""
         admin_data = {
             "name": name,

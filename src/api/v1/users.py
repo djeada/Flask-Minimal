@@ -2,7 +2,9 @@
 Users API endpoints.
 """
 
-from flask import Blueprint, jsonify, request
+from typing import Any, Tuple
+
+from flask import Blueprint, Response, jsonify, request
 from flask_jwt_extended import jwt_required
 from marshmallow import Schema, fields
 
@@ -26,7 +28,7 @@ class UserUpdateSchema(Schema):
 @users_bp.route("", methods=["GET"])
 @jwt_required()
 @admin_required
-def get_users():
+def get_users() -> Tuple[Response, int]:
     """Get paginated list of all users (admin only)."""
     try:
         page = request.args.get("page", 1, type=int)
@@ -44,7 +46,7 @@ def get_users():
 @users_bp.route("/<int:user_id>", methods=["GET"])
 @jwt_required()
 @owner_or_admin_required
-def get_user(user_id):
+def get_user(user_id: int) -> Tuple[Response, int]:
     """Get user by ID (owner or admin only)."""
     try:
         user = UserService.get_user_by_id(user_id)
@@ -63,7 +65,7 @@ def get_user(user_id):
 @jwt_required()
 @owner_or_admin_required
 @validate_json(UserUpdateSchema)
-def update_user(user_id):
+def update_user(user_id: int) -> Tuple[Response, int]:
     """Update user information (owner or admin only)."""
     try:
         data = request.get_json()
@@ -88,7 +90,7 @@ def update_user(user_id):
 @users_bp.route("/<int:user_id>", methods=["DELETE"])
 @jwt_required()
 @admin_required
-def delete_user(user_id):
+def delete_user(user_id: int) -> Tuple[Response, int]:
     """Delete user (admin only)."""
     try:
         UserService.delete_user(user_id)
@@ -103,7 +105,7 @@ def delete_user(user_id):
 @users_bp.route("/<int:user_id>/loans", methods=["GET"])
 @jwt_required()
 @owner_or_admin_required
-def get_user_loans(user_id):
+def get_user_loans(user_id: int) -> Tuple[Response, int]:
     """Get user's loan history (owner or admin only)."""
     try:
         from src.services.book_service import BookService

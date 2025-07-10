@@ -48,4 +48,4 @@ def test_delete_user() -> None:
     library.delete_user(123)
     assert user1 not in library.users
     with raises(ValueError):
-        library.delete_user(000)
+        library.delete_user(0)

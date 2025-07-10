@@ -46,12 +46,18 @@ class UserService:
     @staticmethod
     def get_user_by_id(user_id: int) -> Optional[User]:
         """Get user by ID."""
-        return User.query.get(user_id)
+        user = User.query.get(user_id)
+        if not isinstance(user, User):
+            return None
+        return user
 
     @staticmethod
     def get_user_by_email(email: str) -> Optional[User]:
         """Get user by email."""
-        return User.query.filter_by(email=email).first()
+        user = User.query.filter_by(email=email).first()
+        if not isinstance(user, User):
+            return None
+        return user
 
     @staticmethod
     def authenticate_user(email: str, password: str) -> Optional[User]:
@@ -65,11 +71,14 @@ class UserService:
     def create_access_token(user: User) -> str:
         """Create JWT access token for user."""
         expires = timedelta(hours=current_app.config["JWT_ACCESS_TOKEN_EXPIRES_HOURS"])
-        return create_access_token(
+        token = create_access_token(
             identity=user.id,
             expires_delta=expires,
             additional_claims={"role": user.role},
         )
+        if not isinstance(token, str):
+            raise RuntimeError("Failed to create access token")
+        return token
 
     @staticmethod
     def get_all_users(page: int = 1, per_page: int = 20) -> Dict[str, Any]:

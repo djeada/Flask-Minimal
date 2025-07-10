@@ -32,7 +32,7 @@ class RegisterSchema(Schema):
 
 @auth_bp.route("/login", methods=["POST"])
 @validate_json(LoginSchema)
-def login():
+def login() -> tuple:
     """User login endpoint."""
     try:
         data = request.get_json()
@@ -58,7 +58,7 @@ def login():
 
 @auth_bp.route("/register", methods=["POST"])
 @validate_json(RegisterSchema)
-def register():
+def register() -> tuple:
     """User registration endpoint."""
     try:
         data = request.get_json()
@@ -84,7 +84,7 @@ def register():
 
 @auth_bp.route("/me", methods=["GET"])
 @jwt_required()
-def get_current_user():
+def get_current_user() -> tuple:
     """Get current user information."""
     try:
         user_id = get_jwt_identity()
@@ -103,7 +103,7 @@ def get_current_user():
 
 @auth_bp.route("/refresh", methods=["POST"])
 @jwt_required(refresh=True)
-def refresh():
+def refresh() -> tuple:
     """Refresh access token."""
     try:
         user_id = get_jwt_identity()

@@ -2,6 +2,7 @@
 Database models and extensions initialization.
 """
 
+from flask import Flask
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 from flask_limiter import Limiter
@@ -19,7 +20,7 @@ limiter = Limiter(
 cors = CORS()
 
 
-def init_extensions(app):
+def init_extensions(app: Flask) -> None:
     """Initialize Flask extensions with app context."""
     db.init_app(app)
     migrate.init_app(app, db)

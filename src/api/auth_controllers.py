@@ -14,7 +14,11 @@ def handle_login_post() -> str:
     try:
         username = request.form.get("username")
         password = request.form.get("password")
-        if storage.retrieve_password(username) == password:
+        if (
+            username is not None
+            and password is not None
+            and storage.retrieve_password(username) == password
+        ):
             return render_template("home.html", user=username)
         else:
             error = "Invalid credentials"

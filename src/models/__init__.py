@@ -3,6 +3,8 @@ Database models for the library application.
 """
 
 from datetime import datetime
+from typing import Any, Dict
+import typing
 
 from werkzeug.security import check_password_hash, generate_password_hash
 
@@ -33,7 +35,7 @@ class User(db.Model, TimestampMixin):
     # Relationships
     borrowed_books = db.relationship("BookLoan", back_populates="user", lazy="dynamic")
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"<User {self.email}>"
 
     def set_password(self, password: str) -> None:
@@ -44,9 +46,9 @@ class User(db.Model, TimestampMixin):
         """Check if provided password matches hash."""
         return check_password_hash(self.password_hash, password)
 
-    def to_dict(self, include_email: bool = False) -> dict:
+    def to_dict(self, include_email: bool = False) -> Dict[str, Any]:
         """Convert user to dictionary."""
-        data = {
+        data: Dict[str, Any] = {
             "id": self.id,
             "name": self.name,
             "is_active": self.is_active,
@@ -90,10 +92,10 @@ class Book(db.Model, TimestampMixin):
     # Relationships
     loans = db.relationship("BookLoan", back_populates="book", lazy="dynamic")
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"<Book {self.title}>"
 
-    def to_dict(self) -> dict:
+    def to_dict(self) -> Dict[str, Any]:
         """Convert book to dictionary."""
         return {
             "id": self.id,
@@ -140,10 +142,10 @@ class BookLoan(db.Model, TimestampMixin):
     user = db.relationship("User", back_populates="borrowed_books")
     book = db.relationship("Book", back_populates="loans")
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"<BookLoan {self.user.name} - {self.book.title}>"
 
-    def to_dict(self) -> dict:
+    def to_dict(self) -> Dict[str, Any]:
         """Convert loan to dictionary."""
         return {
             "id": self.id,
@@ -164,4 +166,4 @@ class BookLoan(db.Model, TimestampMixin):
         """Check if loan is overdue."""
         if self.is_returned:
             return False
-        return datetime.utcnow() > self.due_date
+        return bool(datetime.utcnow() > self.due_date)

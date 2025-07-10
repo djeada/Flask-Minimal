@@ -42,7 +42,7 @@ class BorrowBookSchema(Schema):
 
 
 @books_bp.route("", methods=["GET"])
-def get_books():
+def get_books() -> tuple:
     """Get paginated list of all books with optional search."""
     try:
         page = request.args.get("page", 1, type=int)
@@ -61,7 +61,7 @@ def get_books():
 
 
 @books_bp.route("/<int:book_id>", methods=["GET"])
-def get_book(book_id):
+def get_book(book_id: int) -> tuple:
     """Get book by ID."""
     try:
         book = BookService.get_book_by_id(book_id)
@@ -80,7 +80,7 @@ def get_book(book_id):
 @jwt_required()
 @admin_required
 @validate_json(BookCreateSchema)
-def create_book():
+def create_book() -> tuple:
     """Create a new book (admin only)."""
     try:
         data = request.get_json()
@@ -101,7 +101,7 @@ def create_book():
 @jwt_required()
 @admin_required
 @validate_json(BookUpdateSchema)
-def update_book(book_id):
+def update_book(book_id: int) -> tuple:
     """Update book information (admin only)."""
     try:
         data = request.get_json()
@@ -121,7 +121,7 @@ def update_book(book_id):
 @books_bp.route("/<int:book_id>", methods=["DELETE"])
 @jwt_required()
 @admin_required
-def delete_book(book_id):
+def delete_book(book_id: int) -> tuple:
     """Delete book (admin only)."""
     try:
         BookService.delete_book(book_id)
@@ -136,7 +136,7 @@ def delete_book(book_id):
 @books_bp.route("/<int:book_id>/borrow", methods=["POST"])
 @jwt_required()
 @validate_json(BorrowBookSchema)
-def borrow_book(book_id):
+def borrow_book(book_id: int) -> tuple:
     """Borrow a book."""
     try:
         user_id = get_jwt_identity()
@@ -158,7 +158,7 @@ def borrow_book(book_id):
 
 @books_bp.route("/loans/<int:loan_id>/return", methods=["POST"])
 @jwt_required()
-def return_book(loan_id):
+def return_book(loan_id: int) -> tuple:
     """Return a borrowed book."""
     try:
         user_id = get_jwt_identity()
@@ -191,7 +191,7 @@ def return_book(loan_id):
 @books_bp.route("/loans/overdue", methods=["GET"])
 @jwt_required()
 @admin_required
-def get_overdue_loans():
+def get_overdue_loans() -> tuple:
     """Get all overdue loans (admin only)."""
     try:
         loans = BookService.get_overdue_loans()

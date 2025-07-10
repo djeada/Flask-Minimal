@@ -2,7 +2,9 @@
 Web interface blueprints for the Flask application.
 """
 
-from flask import Blueprint, jsonify, render_template
+from typing import Tuple
+
+from flask import Blueprint, Response, jsonify, render_template
 
 from src.extensions import db
 
@@ -10,13 +12,13 @@ web_bp = Blueprint("web", __name__)
 
 
 @web_bp.route("/")
-def index():
+def index() -> str:
     """Home page."""
     return render_template("index.html")
 
 
 @web_bp.route("/health")
-def health_check():
+def health_check() -> Tuple[Response, int]:
     """Health check endpoint for monitoring."""
     try:
         # Check database connection
@@ -38,6 +40,6 @@ def health_check():
 
 
 @web_bp.route("/api/docs")
-def api_docs():
+def api_docs() -> str:
     """API documentation page."""
     return render_template("api_docs.html")

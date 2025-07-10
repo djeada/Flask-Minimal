@@ -25,13 +25,10 @@ class Book:
     def from_dict(cls, book_dict: dict) -> "Book":
         """
         Creates a new Book instance from a dictionary.
-
-        :param book_dict: A dictionary representing the book.
-        :return: A new Book instance.
         """
         return cls(
-            id=book_dict.get("id"),
-            title=book_dict.get("title"),
-            author=book_dict.get("author"),
-            year=book_dict.get("year"),
+            id=int(book_dict["id"]),
+            title=str(book_dict["title"]),
+            author=str(book_dict["author"]),
+            year=int(book_dict["year"]),
         )

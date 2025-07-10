@@ -38,11 +38,14 @@ class BookService:
     @staticmethod
     def get_book_by_id(book_id: int) -> Optional[Book]:
         """Get book by ID."""
-        return Book.query.get(book_id)
+        book = Book.query.get(book_id)
+        if not isinstance(book, Book):
+            return None
+        return book
 
     @staticmethod
     def get_all_books(
-        page: int = 1, per_page: int = 20, search: str = None
+        page: int = 1, per_page: int = 20, search: Optional[str] = None
     ) -> Dict[str, Any]:
         """Get paginated list of all books with optional search."""
         query = Book.query
@@ -155,13 +158,15 @@ class BookService:
         db.session.add(loan)
         db.session.commit()
 
+        if not isinstance(loan, BookLoan):
+            raise RuntimeError("Failed to create loan")
         return loan
 
     @staticmethod
     def return_book(loan_id: int) -> BookLoan:
         """Return a borrowed book."""
         loan = BookLoan.query.get(loan_id)
-        if not loan:
+        if not isinstance(loan, BookLoan):
             raise NotFoundError("Loan not found")
 
         if loan.is_returned:
@@ -173,9 +178,9 @@ class BookService:
 
         # Update book availability
         book = loan.book
-        book.available_copies += 1
-        book.is_available = True
-
+        if hasattr(book, "available_copies") and hasattr(book, "is_available"):
+            book.available_copies += 1  # type: ignore[attr-defined]
+            book.is_available = True  # type: ignore[attr-defined]
         db.session.commit()
         return loan
 
@@ -187,11 +192,17 @@ class BookService:
         if active_only:
             query = query.filter_by(is_returned=False)
 
-        return query.all()
+        loans = query.all()
+        if not isinstance(loans, list):
+            return []
+        return loans
 
     @staticmethod
     def get_overdue_loans() -> List[BookLoan]:
         """Get all overdue loans."""
-        return BookLoan.query.filter(
+        loans = BookLoan.query.filter(
             BookLoan.is_returned.is_(False), BookLoan.due_date < datetime.utcnow()
         ).all()
+        if not isinstance(loans, list):
+            return []
+        return loans
