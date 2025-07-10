@@ -1,203 +1,407 @@
-# Flask-Minimal
+# Flask-Minimal 2.0 🚀
 
-The purpose of this template is to provide a starting point for creating new Flask apps that require more than the bare minimum. The README provides instructions for installation on Unix/MacOS as well as using Docker. Additionally, it explains how to generate documentation using Sphinx. 
+A **modern, production-ready Flask library management system** template showcasing current industry best practices. This template provides a solid foundation for building scalable Flask applications with enterprise-grade features.
 
-## Problem description
+[![Flask](https://img.shields.io/badge/Flask-3.1.1-blue.svg)](https://flask.palletsprojects.com/)
+[![Python](https://img.shields.io/badge/Python-3.9%2B-blue.svg)](https://python.org)
+[![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-2.0-green.svg)](https://sqlalchemy.org)
+[![Docker](https://img.shields.io/badge/Docker-Ready-blue.svg)](https://docker.com)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-When creating a new Flask app, it is often useful to have a template that can be used to start from. 
+## ✨ Features
 
-The bare minmal Flask app consits of only a few lines of code:
+### 🏗️ **Modern Architecture**
+- **Application Factory Pattern** with environment-based configuration
+- **Service Layer Architecture** with proper separation of concerns
+- **SQLAlchemy 2.0 ORM** with database migrations (Flask-Migrate)
+- **RESTful API** with versioning (v1) and OpenAPI-ready structure
 
- ```Python
-from flask import Flask
-app = Flask(name)
-@app.route("/")
-def main():
-    return "Hello World"
-```  
+### 🔒 **Security & Authentication**
+- **JWT Authentication** with refresh tokens
+- **Role-Based Access Control (RBAC)** - Admin/User roles
+- **Bcrypt Password Hashing** for secure password storage
+- **Rate Limiting** to prevent abuse
+- **CORS Support** for cross-origin requests
 
-We usually want a bit more than that. That's why I decided to create this template.
+### 📊 **Data Management**
+- **PostgreSQL/SQLite Support** with connection pooling
+- **Database Migrations** with Alembic
+- **Model Relationships** (Users, Books, Loans with borrowing system)
+- **Data Validation** with Marshmallow schemas
+- **Pagination & Search** capabilities
 
-# Installation
+### 🐳 **DevOps & Deployment**
+- **Multi-stage Docker** builds for optimization
+- **Docker Compose** for local development
+- **Production WSGI** server (Gunicorn) configuration
+- **Health Check** endpoints for monitoring
+- **Environment Configuration** management
 
-## Setup for Unix, MacOS
+### 🧪 **Developer Experience**
+- **CLI Commands** for database management and seeding
+- **Modern Python Packaging** with pyproject.toml
+- **Type Hints** throughout codebase
+- **Comprehensive Error Handling** with custom exceptions
+- **Structured Logging** ready
 
-1. Download the code repository from GitHub:
-    
-```Bash
+## 🚀 Quick Start
+
+### Prerequisites
+- Python 3.9+
+- Docker (optional but recommended)
+- Git
+
+### 1. Clone & Setup
+
+```bash
+# Clone the repository
 git clone https://github.com/djeada/Flask-Minimal.git
 cd Flask-Minimal
+
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install dependencies
+pip install -e .
 ```
 
-2. Install dependencies in a virtual environment:
+### 2. Environment Configuration
 
-```Bash
-python -m venv env
-source env/bin/activate
-pip install -r requirements.txt
+```bash
+# Copy environment template
+cp .env.example .env
+
+# Edit .env file with your settings
+# Key variables:
+# - SECRET_KEY: Your application secret key
+# - JWT_SECRET_KEY: JWT signing key
+# - DATABASE_URL: Database connection string
 ```
 
-3. Start the app:
+### 3. Initialize Database
 
-```Bash
+```bash
+# Set Flask app
+export FLASK_APP=src.app:app
+
+# Initialize database
+flask init-db
+
+# Seed with sample data
+flask seed-db
+```
+
+### 4. Run the Application
+
+```bash
+# Development server
+flask run --host=0.0.0.0 --port=5000
+
+# Or using Python directly
 python src/app.py
 ```
 
-To make the server available on the LAN, modify the code where the run method is called on the Flask instance (here named app):
+The application will be available at `http://localhost:5000`
 
-```Python
-app.run(host='0.0.0.0')
+## 🐳 Docker Development
+
+For a complete development environment with PostgreSQL and Redis:
+
+```bash
+# Start all services
+docker-compose up --build
+
+# Initialize database (first time only)
+docker-compose exec web flask init-db
+docker-compose exec web flask seed-db
 ```
 
-##  Start the app in Docker
+Services:
+- **Web App**: http://localhost:5000
+- **PostgreSQL**: localhost:5432
+- **Redis**: localhost:6379
 
-1. Download the code from the repository:
-    
-```Bash
-git clone https://github.com/djeada/Flask-Minimal.git
-cd Flask-Minimal
+## 📚 API Documentation
+
+### Authentication
+
+#### Register User
+```bash
+curl -X POST http://localhost:5000/api/v1/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "John Doe",
+    "email": "john@example.com",
+    "password": "password123"
+  }'
 ```
 
-2. Build the Docker image:
-    
-```Bash
-docker build -t minimal-flask-app .
+#### Login
+```bash
+curl -X POST http://localhost:5000/api/v1/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "admin@library.com",
+    "password": "admin123"
+  }'
 ```
 
-3. Start a Docker container:
-
-```Bash
-sudo docker run --network=host minimal-flask-app
+#### Get Current User
+```bash
+curl -X GET http://localhost:5000/api/v1/auth/me \
+  -H "Authorization: Bearer YOUR_JWT_TOKEN"
 ```
 
-4. In your browser, go to `http://localhost:5000`. The app should now be working.
+### Books Management
 
-# API
+#### List Books (with search)
+```bash
+# Get all books
+curl http://localhost:5000/api/v1/books
 
-## Endpoints
-
-### GET /books
-This endpoint returns a list of all books in the library.
-
-To get a list of all books in the library, you can use the following curl command:
-
-```Bash
-curl http://localhost:5000/books
+# Search books
+curl "http://localhost:5000/api/v1/books?search=tolkien&page=1&per_page=10"
 ```
 
-To get a list of all books in the library using JavaScript, you can use the fetch function as follows:
-
-```javascript
-fetch('http://localhost:5000/books')
-  .then(response => response.json())
-  .then(data => console.log(data));
+#### Get Book Details
+```bash
+curl http://localhost:5000/api/v1/books/1
 ```
 
-### GET /books/<int:book_id>
-This endpoint returns information about a specific book, specified by its ID.
-
-To get information about a specific book, you can use the following curl command:
-
-```Bash
-curl http://localhost:5000/books/1
+#### Create Book (Admin only)
+```bash
+curl -X POST http://localhost:5000/api/v1/books \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer ADMIN_JWT_TOKEN" \
+  -d '{
+    "title": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "year": 1925,
+    "isbn": "9780743273565",
+    "total_copies": 3
+  }'
 ```
 
-To get information about a specific book using JavaScript, you can use the fetch function as follows:
-
-```javascript
-fetch('http://localhost:5000/books/1')
-  .then(response => response.json())
-  .then(data => console.log(data));
+#### Borrow Book
+```bash
+curl -X POST http://localhost:5000/api/v1/books/1/borrow \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer USER_JWT_TOKEN" \
+  -d '{"days": 14}'
 ```
 
-### POST /books
-This endpoint allows users to add a new book to the library. Users should submit a JSON object containing the book's title, author, and description.
-
-To add a new book to the library, you can use the following curl command:
-
-```Bash
-curl -X POST -H "Content-Type: application/json" -d '{"title":"New Book", "author":"Author Name", "description":"Book Description"}' http://localhost:5000/books
+#### Return Book
+```bash
+curl -X POST http://localhost:5000/api/v1/books/loans/1/return \
+  -H "Authorization: Bearer USER_JWT_TOKEN"
 ```
 
-To add a new book to the library using JavaScript, you can use the fetch function with the POST method as follows:
+### User Management
 
-```javascript
-fetch('http://127.0.0.1:5000/books', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify( {
-            "id": 7,
-            "title": "The Return of the King",
-            "author": "J.R.R. Tolkien",
-            "year": 1955,
-        })
-})
-.then(response => response.json())
-.then(data => console.log(data))
+#### List Users (Admin only)
+```bash
+curl http://localhost:5000/api/v1/users \
+  -H "Authorization: Bearer ADMIN_JWT_TOKEN"
 ```
 
-### DELETE /books/<int:book_id>
-This endpoint allows users to delete a book from the library, specified by its ID.
-
-To delete a book from the library, you can use the following curl command:
-
-```Bash
-curl -X DELETE http://localhost:5000/books/1
+#### Get User Loans
+```bash
+curl http://localhost:5000/api/v1/users/1/loans \
+  -H "Authorization: Bearer USER_JWT_TOKEN"
 ```
 
-To delete a book from the library using JavaScript, you can use the fetch function with the DELETE method as follows:
-
-```javascript
-fetch('http://localhost:5000/books/1', {
-  method: 'DELETE'
-})
-  .then(response => response.json())
-  .then(data => console.log(data));
+### Health Check
+```bash
+curl http://localhost:5000/health
 ```
 
-# Documentation
+## 🏗️ Project Structure
 
-Sphinx is a tool that can be used to automatically generate documentation from your project's docstrings. This template includes a basic documentation setup using Sphinx.
-
-## Creating documentation
-
-If documentation has not yet been created for your project, you can create a basic Sphinx documentation setup using the following steps:
-
-```Bash
-mkdir -p docs && cd docs
-sphinx-quickstart
-sphinx-apidoc -o . ..
-make html
+```
+Flask-Minimal/
+├── src/
+│   ├── __init__.py              # Application factory
+│   ├── app.py                   # Application entry point
+│   ├── config.py                # Configuration management
+│   ├── extensions.py            # Flask extensions
+│   ├── exceptions.py            # Custom exceptions
+│   ├── cli.py                   # CLI commands
+│   ├── api/
+│   │   ├── v1/                  # API version 1
+│   │   │   ├── __init__.py      # API blueprint registration
+│   │   │   ├── auth.py          # Authentication endpoints
+│   │   │   ├── users.py         # User management endpoints
+│   │   │   └── books.py         # Book management endpoints
+│   │   ├── decorators.py        # API decorators
+│   │   └── errors.py            # Error handlers
+│   ├── models/
+│   │   └── __init__.py          # Database models
+│   ├── services/
+│   │   ├── user_service.py      # User business logic
+│   │   └── book_service.py      # Book business logic
+│   ├── web/
+│   │   └── __init__.py          # Web interface blueprints
+│   └── templates/               # Jinja2 templates
+├── tests/                       # Test suite
+├── migrations/                  # Database migrations
+├── docker-compose.yml           # Development environment
+├── Dockerfile                   # Production container
+├── pyproject.toml              # Modern Python packaging
+├── requirements.txt            # Python dependencies
+├── .env.example               # Environment template
+└── README.md                  # This file
 ```
 
-## Modifying documentation
+## 🧪 Testing
 
-To modify the documentation for this template, you can make changes to the existing `docs/source` directory.
+```bash
+# Install development dependencies
+pip install -e ".[dev]"
 
-* Configuration
+# Run tests
+pytest
 
-The Sphinx configuration file is located at `docs/source/conf.py`. You can modify this file to change various settings such as the project name, author, and more.
+# Run with coverage
+pytest --cov=src --cov-report=html
 
-* Content
-
-The main content for the documentation is located in `docs/source/index.rst`. You can modify this file to add or remove sections and pages as needed.
-
-* Updating and viewing documentation
-
-To update the documentation after making changes, run the following command from the `docs` directory:
-
-```Bash
-make html
+# View coverage report
+open htmlcov/index.html
 ```
 
-To view the generated HTML documentation, open `docs/build/html/index.html` in a web browser.
+## 🚀 Production Deployment
 
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+### Environment Variables
 
-Please make sure to update tests as appropriate.
+```bash
+# Required production environment variables
+FLASK_ENV=production
+SECRET_KEY=your-secret-key
+JWT_SECRET_KEY=your-jwt-secret
+DATABASE_URL=postgresql://user:pass@host:5432/db
+REDIS_URL=redis://host:6379/0
+```
 
-## License
-This project is licensed under the terms of the MIT license. See the [LICENSE](https://choosealicense.com/licenses/mit/) file for details.
+### Using Docker
+
+```bash
+# Build production image
+docker build -t flask-minimal:latest .
+
+# Run container
+docker run -p 5000:5000 \
+  -e FLASK_ENV=production \
+  -e DATABASE_URL=postgresql://... \
+  flask-minimal:latest
+```
+
+### Database Migration
+
+```bash
+# Initialize migrations (first time)
+flask db init
+
+# Create migration
+flask db migrate -m "Description"
+
+# Apply migration
+flask db upgrade
+```
+
+## 🛠️ CLI Commands
+
+```bash
+# Database management
+flask init-db              # Initialize database tables
+flask seed-db              # Seed with sample data
+flask create-admin          # Create admin user
+
+# Database migrations
+flask db init              # Initialize migrations
+flask db migrate           # Create migration
+flask db upgrade           # Apply migrations
+flask db downgrade         # Rollback migrations
+```
+
+## 🔧 Configuration
+
+### Environment-based Configuration
+
+The application supports multiple environments:
+
+- **Development**: SQLite database, debug mode enabled
+- **Testing**: In-memory database, testing optimizations
+- **Production**: PostgreSQL database, security hardened
+
+### Key Configuration Options
+
+```python
+# Security
+SECRET_KEY                    # Flask secret key
+JWT_SECRET_KEY               # JWT signing key
+BCRYPT_LOG_ROUNDS           # Password hashing rounds
+
+# Database
+DATABASE_URL                 # Database connection string
+SQLALCHEMY_ENGINE_OPTIONS   # SQLAlchemy engine options
+
+# Rate Limiting
+RATELIMIT_STORAGE_URL       # Rate limiting storage backend
+
+# Pagination
+ITEMS_PER_PAGE              # Default items per page
+MAX_ITEMS_PER_PAGE          # Maximum items per page
+```
+
+## 📖 Architecture Overview
+
+### Application Factory Pattern
+The application uses the factory pattern for better testability and configuration management.
+
+### Service Layer
+Business logic is separated into service classes, making the code more maintainable and testable.
+
+### Repository Pattern
+Data access is abstracted through SQLAlchemy models with service layer coordination.
+
+### JWT Authentication
+Stateless authentication using JSON Web Tokens with role-based access control.
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Commit changes: `git commit -m 'Add amazing feature'`
+4. Push to branch: `git push origin feature/amazing-feature`
+5. Open a Pull Request
+
+### Development Setup
+
+```bash
+# Install development dependencies
+pip install -e ".[dev]"
+
+# Install pre-commit hooks
+pre-commit install
+
+# Run code quality checks
+black src tests
+isort src tests
+flake8 src tests
+mypy src
+bandit -r src
+```
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- Flask team for the excellent web framework
+- SQLAlchemy team for the powerful ORM
+- All contributors and users of this template
+
+---
+
+**Flask-Minimal 2.0** - Building modern Flask applications with confidence! 🚀
