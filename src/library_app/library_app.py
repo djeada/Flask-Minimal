@@ -2,6 +2,7 @@
 This module contains a custom Flask application for a library management
 system.
 """
+
 from flask import Flask
 
 from src.api.auth_controllers import handle_login

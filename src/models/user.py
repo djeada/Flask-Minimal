@@ -2,6 +2,7 @@
 This module defines the LibraryUser data class which represents a user of the
 library.
 """
+
 from dataclasses import dataclass
 
 

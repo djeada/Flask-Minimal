@@ -19,6 +19,7 @@ Example usage:
     all_users = read_all_users()
     all_books = read_all_books()
 """
+
 from dataclasses import asdict
 from typing import Dict, List, Optional
 
