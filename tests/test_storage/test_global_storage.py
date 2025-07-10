@@ -1,5 +1,4 @@
 import pytest
-
 from src.storage.global_storage import (
     add_book_to_library,
     add_user_to_library,

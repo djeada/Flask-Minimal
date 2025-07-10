@@ -193,5 +193,5 @@ class BookService:
     def get_overdue_loans() -> List[BookLoan]:
         """Get all overdue loans."""
         return BookLoan.query.filter(
-            BookLoan.is_returned == False, BookLoan.due_date < datetime.utcnow()
+            BookLoan.is_returned.is_(False), BookLoan.due_date < datetime.utcnow()
         ).all()

@@ -28,16 +28,16 @@ def register_error_handlers(app):
         return jsonify({"error": e.description}), e.code
 
     @app.errorhandler(404)
-    def handle_not_found(e):
+    def handle_not_found(_):
         """Handle 404 errors."""
         return jsonify({"error": "Resource not found"}), 404
 
     @app.errorhandler(405)
-    def handle_method_not_allowed(e):
+    def handle_method_not_allowed(_):
         """Handle 405 errors."""
         return jsonify({"error": "Method not allowed"}), 405
 
     @app.errorhandler(500)
-    def handle_internal_error(e):
+    def handle_internal_error(_):
         """Handle 500 errors."""
         return jsonify({"error": "Internal server error"}), 500

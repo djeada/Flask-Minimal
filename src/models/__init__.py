@@ -3,9 +3,6 @@ Database models for the library application.
 """
 
 from datetime import datetime
-from typing import Optional
-
-from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from src.extensions import db

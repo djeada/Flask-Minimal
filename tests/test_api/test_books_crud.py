@@ -1,7 +1,5 @@
 import json
 
-from .util import client
-
 
 def test_render_books_page(client):
     response = client.get("/books")

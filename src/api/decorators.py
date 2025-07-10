@@ -9,7 +9,6 @@ from flask_jwt_extended import get_jwt, get_jwt_identity
 from marshmallow import ValidationError
 
 from src.exceptions import ForbiddenError
-from src.services.user_service import UserService
 
 
 def validate_json(schema_class):
@@ -38,7 +37,7 @@ def validate_json(schema_class):
                     jsonify({"error": "Validation failed", "messages": err.messages}),
                     400,
                 )
-            except Exception as e:
+            except Exception:
                 return jsonify({"error": "Invalid JSON data"}), 400
 
         return decorated_function
@@ -60,9 +59,9 @@ def admin_required(f):
 
             return f(*args, **kwargs)
 
-        except ForbiddenError as e:
-            return jsonify({"error": str(e)}), e.status_code
-        except Exception as e:
+        except ForbiddenError as err:
+            return jsonify({"error": str(err)}), err.status_code
+        except Exception:
             return jsonify({"error": "Access denied"}), 403
 
     return decorated_function
@@ -77,19 +76,15 @@ def owner_or_admin_required(f):
             current_user_id = get_jwt_identity()
             claims = get_jwt()
             user_role = claims.get("role", "user")
-
             # Get user_id from URL parameters
             requested_user_id = kwargs.get("user_id")
-
             # Allow access if admin or owner
             if user_role == "admin" or current_user_id == requested_user_id:
                 return f(*args, **kwargs)
-
             raise ForbiddenError("Access denied: insufficient permissions")
-
-        except ForbiddenError as e:
-            return jsonify({"error": str(e)}), e.status_code
-        except Exception as e:
+        except ForbiddenError as err:
+            return jsonify({"error": str(err)}), err.status_code
+        except Exception:
             return jsonify({"error": "Access denied"}), 403
 
     return decorated_function

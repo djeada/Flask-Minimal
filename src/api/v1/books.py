@@ -54,9 +54,9 @@ def get_books():
         )
         return jsonify(result), 200
 
-    except ServiceValidationError as e:
-        return jsonify({"error": str(e)}), e.status_code
-    except Exception as e:
+    except ServiceValidationError as err:
+        return jsonify({"error": str(err)}), err.status_code
+    except Exception:
         return jsonify({"error": "Failed to retrieve books"}), 500
 
 
@@ -70,9 +70,9 @@ def get_book(book_id):
 
         return jsonify({"book": book.to_dict()}), 200
 
-    except ServiceValidationError as e:
-        return jsonify({"error": str(e)}), e.status_code
-    except Exception as e:
+    except ServiceValidationError as err:
+        return jsonify({"error": str(err)}), err.status_code
+    except Exception:
         return jsonify({"error": "Failed to retrieve book"}), 500
 
 
@@ -91,9 +91,9 @@ def create_book():
             201,
         )
 
-    except ServiceValidationError as e:
-        return jsonify({"error": str(e)}), e.status_code
-    except Exception as e:
+    except ServiceValidationError as err:
+        return jsonify({"error": str(err)}), err.status_code
+    except Exception:
         return jsonify({"error": "Failed to create book"}), 500
 
 
@@ -112,9 +112,9 @@ def update_book(book_id):
             200,
         )
 
-    except ServiceValidationError as e:
-        return jsonify({"error": str(e)}), e.status_code
-    except Exception as e:
+    except ServiceValidationError as err:
+        return jsonify({"error": str(err)}), err.status_code
+    except Exception:
         return jsonify({"error": "Failed to update book"}), 500
 
 
@@ -127,9 +127,9 @@ def delete_book(book_id):
         BookService.delete_book(book_id)
         return jsonify({"message": "Book deleted successfully"}), 200
 
-    except ServiceValidationError as e:
-        return jsonify({"error": str(e)}), e.status_code
-    except Exception as e:
+    except ServiceValidationError as err:
+        return jsonify({"error": str(err)}), err.status_code
+    except Exception:
         return jsonify({"error": "Failed to delete book"}), 500
 
 
@@ -150,9 +150,9 @@ def borrow_book(book_id):
             201,
         )
 
-    except ServiceValidationError as e:
-        return jsonify({"error": str(e)}), e.status_code
-    except Exception as e:
+    except ServiceValidationError as err:
+        return jsonify({"error": str(err)}), err.status_code
+    except Exception:
         return jsonify({"error": "Failed to borrow book"}), 500
 
 
@@ -182,9 +182,9 @@ def return_book(loan_id):
             200,
         )
 
-    except ServiceValidationError as e:
-        return jsonify({"error": str(e)}), e.status_code
-    except Exception as e:
+    except ServiceValidationError as err:
+        return jsonify({"error": str(err)}), err.status_code
+    except Exception:
         return jsonify({"error": "Failed to return book"}), 500
 
 
@@ -206,7 +206,7 @@ def get_overdue_loans():
             200,
         )
 
-    except ServiceValidationError as e:
-        return jsonify({"error": str(e)}), e.status_code
-    except Exception as e:
+    except ServiceValidationError as err:
+        return jsonify({"error": str(err)}), err.status_code
+    except Exception:
         return jsonify({"error": "Failed to retrieve overdue loans"}), 500

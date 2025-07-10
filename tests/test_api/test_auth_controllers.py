@@ -1,8 +1,4 @@
-import pytest
-
 from src.storage.global_storage import add_user_to_library
-
-from .util import client
 
 
 def test_handle_login_post_successful(client):

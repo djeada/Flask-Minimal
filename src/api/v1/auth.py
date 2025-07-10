@@ -4,7 +4,7 @@ Authentication API endpoints.
 
 from flask import Blueprint, jsonify, request
 from flask_jwt_extended import get_jwt_identity, jwt_required
-from marshmallow import Schema, ValidationError, fields
+from marshmallow import Schema, fields
 
 from src.api.decorators import validate_json
 from src.exceptions import UnauthorizedError
@@ -50,9 +50,9 @@ def login():
             200,
         )
 
-    except ServiceValidationError as e:
-        return jsonify({"error": str(e)}), e.status_code
-    except Exception as e:
+    except ServiceValidationError as err:
+        return jsonify({"error": str(err)}), err.status_code
+    except Exception:
         return jsonify({"error": "Login failed"}), 500
 
 
@@ -76,9 +76,9 @@ def register():
             201,
         )
 
-    except ServiceValidationError as e:
-        return jsonify({"error": str(e)}), e.status_code
-    except Exception as e:
+    except ServiceValidationError as err:
+        return jsonify({"error": str(err)}), err.status_code
+    except Exception:
         return jsonify({"error": "Registration failed"}), 500
 
 
@@ -95,9 +95,9 @@ def get_current_user():
 
         return jsonify({"user": user.to_dict(include_email=True)}), 200
 
-    except ServiceValidationError as e:
-        return jsonify({"error": str(e)}), e.status_code
-    except Exception as e:
+    except ServiceValidationError as err:
+        return jsonify({"error": str(err)}), err.status_code
+    except Exception:
         return jsonify({"error": "Failed to get user info"}), 500
 
 
@@ -116,7 +116,7 @@ def refresh():
 
         return jsonify({"access_token": access_token}), 200
 
-    except ServiceValidationError as e:
-        return jsonify({"error": str(e)}), e.status_code
-    except Exception as e:
+    except ServiceValidationError as err:
+        return jsonify({"error": str(err)}), err.status_code
+    except Exception:
         return jsonify({"error": "Token refresh failed"}), 500

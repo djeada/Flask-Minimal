@@ -3,7 +3,7 @@ Users API endpoints.
 """
 
 from flask import Blueprint, jsonify, request
-from flask_jwt_extended import get_jwt_identity, jwt_required
+from flask_jwt_extended import jwt_required
 from marshmallow import Schema, fields
 
 from src.api.decorators import admin_required, owner_or_admin_required, validate_json
@@ -35,9 +35,9 @@ def get_users():
         result = UserService.get_all_users(page=page, per_page=per_page)
         return jsonify(result), 200
 
-    except ServiceValidationError as e:
-        return jsonify({"error": str(e)}), e.status_code
-    except Exception as e:
+    except ServiceValidationError as err:
+        return jsonify({"error": str(err)}), err.status_code
+    except Exception:
         return jsonify({"error": "Failed to retrieve users"}), 500
 
 
@@ -53,9 +53,9 @@ def get_user(user_id):
 
         return jsonify({"user": user.to_dict(include_email=True)}), 200
 
-    except ServiceValidationError as e:
-        return jsonify({"error": str(e)}), e.status_code
-    except Exception as e:
+    except ServiceValidationError as err:
+        return jsonify({"error": str(err)}), err.status_code
+    except Exception:
         return jsonify({"error": "Failed to retrieve user"}), 500
 
 
@@ -79,9 +79,9 @@ def update_user(user_id):
             200,
         )
 
-    except ServiceValidationError as e:
-        return jsonify({"error": str(e)}), e.status_code
-    except Exception as e:
+    except ServiceValidationError as err:
+        return jsonify({"error": str(err)}), err.status_code
+    except Exception:
         return jsonify({"error": "Failed to update user"}), 500
 
 
@@ -94,9 +94,9 @@ def delete_user(user_id):
         UserService.delete_user(user_id)
         return jsonify({"message": "User deleted successfully"}), 200
 
-    except ServiceValidationError as e:
-        return jsonify({"error": str(e)}), e.status_code
-    except Exception as e:
+    except ServiceValidationError as err:
+        return jsonify({"error": str(err)}), err.status_code
+    except Exception:
         return jsonify({"error": "Failed to delete user"}), 500
 
 
@@ -116,7 +116,7 @@ def get_user_loans(user_id):
             200,
         )
 
-    except ServiceValidationError as e:
-        return jsonify({"error": str(e)}), e.status_code
-    except Exception as e:
+    except ServiceValidationError as err:
+        return jsonify({"error": str(err)}), err.status_code
+    except Exception:
         return jsonify({"error": "Failed to retrieve user loans"}), 500
