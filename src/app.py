@@ -6,10 +6,10 @@ application factory pattern for better modularity and testing.
 """
 
 import os
+
 from dotenv import load_dotenv
 
 from src import create_app  # noqa: E402
-
 
 # Load environment variables
 load_dotenv()
