@@ -3,7 +3,7 @@ Configuration settings for the Flask application.
 """
 
 import os
-from typing import Type
+from typing import Optional, Type
 
 
 class Config:
@@ -80,7 +80,7 @@ config = {
 }
 
 
-def get_config(config_name: str = None) -> Type[Config]:
+def get_config(config_name: Optional[str] = None) -> Type[Config]:
     """Get configuration class based on environment."""
     if config_name is None:
         config_name = os.environ.get("FLASK_ENV", "default")

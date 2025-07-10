@@ -2,13 +2,15 @@
 Application factory for Flask app creation.
 """
 
+from typing import Optional
+
 from flask import Flask
 
 from src.config import get_config
 from src.extensions import init_extensions
 
 
-def create_app(config_name: str = None) -> Flask:
+def create_app(config_name: Optional[str] = None) -> Flask:
     """
     Application factory pattern for creating Flask app instances.
 

@@ -8,6 +8,7 @@ application factory pattern for better modularity and testing.
 import os
 
 from dotenv import load_dotenv
+from flask import Flask
 
 from src import create_app  # noqa: E402
 
@@ -15,7 +16,7 @@ from src import create_app  # noqa: E402
 load_dotenv()
 
 
-def create_application():
+def create_application() -> Flask:
     """Create and configure the Flask application."""
     config_name = os.environ.get("FLASK_ENV", "development")
     app = create_app(config_name)

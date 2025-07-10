@@ -1,7 +1,9 @@
+from typing import Any
+
 from src.storage.global_storage import add_user_to_library
 
 
-def test_render_users_page(client):
+def test_render_users_page(client: Any) -> None:
     users = [
         {"name": "Alice", "email": "alice@example.com", "password": "password123"},
         {"name": "Bob", "email": "bob@example.com", "password": "password456"},

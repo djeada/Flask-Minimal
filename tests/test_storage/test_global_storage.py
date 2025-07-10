@@ -1,3 +1,5 @@
+from typing import Any
+
 import pytest
 
 from src.storage.global_storage import (
@@ -13,11 +15,11 @@ from src.storage.global_storage import (
 
 
 @pytest.fixture
-def client():
+def client() -> Any:
     reset_global_storage()
 
 
-def test_add_user_to_library(client):
+def test_add_user_to_library(client: Any) -> None:
     # Test adding a user to the library
     user_dict = {
         "name": "Alice",
@@ -30,7 +32,7 @@ def test_add_user_to_library(client):
     assert user_exists("Alice")
 
 
-def test_add_book_to_library(client):
+def test_add_book_to_library(client: Any) -> None:
     # Test adding a book to the library
     book_dict = {
         "title": "Harry Potter and the Philosopher's Stone",
@@ -45,7 +47,7 @@ def test_add_book_to_library(client):
     assert all_books[0]["title"] == "Harry Potter and the Philosopher's Stone"
 
 
-def test_retrieve_password(client):
+def test_retrieve_password(client: Any) -> None:
     # Test retrieving a user's password
     user_dict = {
         "name": "Alice",
@@ -59,7 +61,7 @@ def test_retrieve_password(client):
     assert password == "password123"
 
 
-def test_read_all_users(client):
+def test_read_all_users(client: Any) -> None:
     # Test reading all users in the library
     user_dict_1 = {
         "name": "Alice",
@@ -77,7 +79,7 @@ def test_read_all_users(client):
     assert all_users[1]["name"] == "Bob"
 
 
-def test_read_all_books(client):
+def test_read_all_books(client: Any) -> None:
     # Test reading all books in the library
     book_dict_1 = {
         "title": "Harry Potter and the Philosopher's Stone",
@@ -99,7 +101,7 @@ def test_read_all_books(client):
     assert all_books[1]["title"] == "The Hitchhiker's Guide to the Galaxy"
 
 
-def test_read_book(client):
+def test_read_book(client: Any) -> None:
     # Test reading a specific book by ID
     book_dict_1 = {
         "title": "Harry Potter and the Philosopher's Stone",
