@@ -2,6 +2,7 @@
 This module defines the LibraryUser data class which represents a user of the
 library.
 """
+
 from dataclasses import dataclass
 
 
@@ -37,8 +38,8 @@ class LibraryUser:
         dictionary.
         """
         return cls(
-            id=user_dict.get("id"),
-            name=user_dict.get("name"),
-            email=user_dict.get("email"),
-            password=user_dict.get("password"),
+            id=int(user_dict["id"]),
+            name=str(user_dict["name"]),
+            email=str(user_dict["email"]),
+            password=str(user_dict["password"]),
         )

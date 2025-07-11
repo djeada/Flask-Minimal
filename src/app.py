@@ -1,100 +1,34 @@
 """
-This script starts a Flask application that allows users to interact with a
-library. The application allows users to view, borrow and return books, as well
- as add new books and users to the library. The application uses a global
- storage object to store the books and users.
+Modern Flask application entry point using application factory pattern.
 
-The script defines a function `fill_with_dummy_data` that fills the global
-storage object with some dummy data for testing purposes.
-
-The script also defines a function `main` that creates an instance of the
-`LibraryApp` class and runs the Flask development server in debug mode. Debug
-mode allows changes to be made to the code and seen immediately.
-
-To start the application, run this script directly by executing the command
-`python app.py` in the terminal.
+This module creates and configures the Flask application using the
+application factory pattern for better modularity and testing.
 """
 
-from src.library_app.library_app import LibraryApp
-from src.storage.global_storage import add_book_to_library, add_user_to_library
+import os
 
-DEBUG = True
+from dotenv import load_dotenv
+from flask import Flask
 
+from src import create_app  # noqa: E402
 
-def fill_with_dummy_data() -> None:
-    """
-    Fill the global storage with dummy data for testing purposes.
-    """
-    # Those are just some dummy data to test the application
-    # In a real life scenario, you would probably have a database
-    users = [
-        {"name": "admin", "email": "admin@admin.com", "password": "admin"},
-        {
-            "name": "Alice",
-            "email": "alice@example.com",
-            "password": "password123",
-        },
-        {"name": "Bob", "email": "bob@example.com", "password": "password456"},
-        {
-            "name": "Charlie",
-            "email": "charlie@example.com",
-            "password": "password789",
-        },
-    ]
-    books = [
-        {
-            "title": "The Lord of the Rings",
-            "author": "J.R.R. Tolkien",
-            "year": 1954,
-        },
-        {
-            "title": "The Hobbit",
-            "author": "J.R.R. Tolkien",
-            "year": 1937,
-        },
-        {
-            "title": "The Silmarillion",
-            "author": "J.R.R. Tolkien",
-            "year": 1977,
-        },
-        {
-            "title": "The Fellowship of the Ring",
-            "author": "J.R.R. Tolkien",
-            "year": 1954,
-        },
-        {
-            "title": "The Two Towers",
-            "author": "J.R.R. Tolkien",
-            "year": 1954,
-        },
-        {
-            "title": "The Return of the King",
-            "author": "J.R.R. Tolkien",
-            "year": 1955,
-        },
-    ]
-
-    for user in users:
-        add_user_to_library(user)
-
-    for book in books:
-        add_book_to_library(book)
+# Load environment variables
+load_dotenv()
 
 
-def main() -> None:
-    """
-    The main function."""
+def create_application() -> Flask:
+    """Create and configure the Flask application."""
+    config_name = os.environ.get("FLASK_ENV", "development")
+    app = create_app(config_name)
+    return app
 
-    if DEBUG:
-        fill_with_dummy_data()
 
-    app = LibraryApp()
-
-    # Run the Flask development server i.e. debug mode is on.
-    # This will allow you to make changes to the code and see
-    # the changes immediately.
-    app.run()
-
+# Create application instance
+app = create_application()
 
 if __name__ == "__main__":
-    main()
+    app.run(
+        host=os.environ.get("FLASK_HOST", "0.0.0.0"),  # nosec B104
+        port=int(os.environ.get("FLASK_PORT", 5000)),
+        debug=app.config.get("DEBUG", True),
+    )

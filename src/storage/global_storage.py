@@ -19,6 +19,7 @@ Example usage:
     all_users = read_all_users()
     all_books = read_all_books()
 """
+
 from dataclasses import asdict
 from typing import Dict, List, Optional
 
@@ -31,7 +32,7 @@ GLOBAL_STORAGE: Library = Library()
 
 def add_user_to_library(user_dict: Dict[str, str]) -> None:
     """Adds a new user to the global library storage."""
-    user_dict["id"] = len(GLOBAL_STORAGE.users)
+    user_dict["id"] = str(len(GLOBAL_STORAGE.users))  # Ensure id is str
 
     user = LibraryUser.from_dict(user_dict)
     GLOBAL_STORAGE.create_user(user)
@@ -39,7 +40,7 @@ def add_user_to_library(user_dict: Dict[str, str]) -> None:
 
 def add_book_to_library(book_dict: Dict[str, str]) -> None:
     """Adds a new book to the global library storage."""
-    book_dict["id"] = len(GLOBAL_STORAGE.books)
+    book_dict["id"] = str(len(GLOBAL_STORAGE.books))  # Ensure id is str
     book = Book.from_dict(book_dict)
     GLOBAL_STORAGE.create_book(book)
 

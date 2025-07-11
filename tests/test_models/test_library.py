@@ -1,5 +1,3 @@
-from typing import List
-from dataclasses import asdict
 from pytest import raises
 
 from src.models.book import Book
@@ -7,14 +5,14 @@ from src.models.library import Library
 from src.models.user import LibraryUser
 
 
-def test_create_book():
+def test_create_book() -> None:
     library = Library()
     book = Book(id=1, title="The Great Gatsby", author="F. Scott Fitzgerald", year=1925)
     library.create_book(book)
     assert book in library.books
 
 
-def test_delete_book():
+def test_delete_book() -> None:
     library = Library()
     book1 = Book(
         id=1234, title="The Great Gatsby", author="F. Scott Fitzgerald", year=1925
@@ -28,7 +26,7 @@ def test_delete_book():
         library.delete_book(0000)
 
 
-def test_create_user():
+def test_create_user() -> None:
     library = Library()
     user = LibraryUser(
         id=123, name="Alice", email="alice@example.com", password="password123"
@@ -37,7 +35,7 @@ def test_create_user():
     assert user in library.users
 
 
-def test_delete_user():
+def test_delete_user() -> None:
     library = Library()
     user1 = LibraryUser(
         id=123, name="Alice", email="alice@example.com", password="password123"
@@ -50,4 +48,4 @@ def test_delete_user():
     library.delete_user(123)
     assert user1 not in library.users
     with raises(ValueError):
-        library.delete_user(000)
+        library.delete_user(0)

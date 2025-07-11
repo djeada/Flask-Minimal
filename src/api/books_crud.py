@@ -29,7 +29,7 @@ Dependencies:
 """
 
 from dataclasses import asdict
-from typing import Any, Dict, Tuple, Union
+from typing import Any, Dict, Tuple
 
 from flask import Blueprint, jsonify, render_template, request
 
@@ -51,7 +51,7 @@ def render_books_page() -> str:
 
 
 @books_api.route("/books/<int:book_id>", methods=["GET"])
-def get_book(book_id: int) -> Tuple[Union[Dict[str, Any], None], int]:
+def get_book(book_id: int) -> Tuple[Any, int]:
     """
     Get a book by its ID.
 
@@ -68,7 +68,7 @@ def get_book(book_id: int) -> Tuple[Union[Dict[str, Any], None], int]:
 
 
 @books_api.route("/books", methods=["POST"])
-def create_book() -> Tuple[Dict[str, str], int]:
+def create_book() -> Tuple[Any, int]:
     """
     Create a new book.
 
@@ -81,7 +81,7 @@ def create_book() -> Tuple[Dict[str, str], int]:
 
 
 @books_api.route("/books/<int:book_id>", methods=["DELETE"])
-def delete_book(book_id: int) -> Tuple[Dict[str, str], int]:
+def delete_book(book_id: int) -> Tuple[Any, int]:
     """
     Delete a book by its ID.
 
