@@ -43,6 +43,9 @@ def create_app(config_name: Optional[str] = None) -> Flask:
 
 def register_blueprints(app: Flask) -> None:
     """Register application blueprints."""
+    from src.api.auth_controllers import handle_login
+    from src.api.books_crud import books_api
+    from src.api.users_table_page import users_page
     from src.api.v1 import api_v1
     from src.web import web_bp
 
@@ -51,6 +54,15 @@ def register_blueprints(app: Flask) -> None:
 
     # Web interface routes
     app.register_blueprint(web_bp)
+
+    # Auth controllers (login route)
+    app.register_blueprint(handle_login)
+
+    # Books CRUD (classic /books route)
+    app.register_blueprint(books_api)
+
+    # Users table page (/users route)
+    app.register_blueprint(users_page)
 
 
 def register_error_handlers(app: Flask) -> None:

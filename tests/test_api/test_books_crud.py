@@ -1,6 +1,15 @@
 import json
 from typing import Any
 
+import pytest
+
+from src.storage.global_storage import reset_global_storage
+
+
+@pytest.fixture(autouse=True)
+def reset_storage():
+    reset_global_storage()
+
 
 def test_render_books_page(client: Any) -> None:
     response = client.get("/books")
