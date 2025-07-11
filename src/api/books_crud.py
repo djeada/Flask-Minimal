@@ -29,7 +29,7 @@ Dependencies:
 """
 
 from dataclasses import asdict
-from typing import Dict, Tuple
+from typing import Any, Dict, Tuple
 
 from flask import Blueprint, jsonify, render_template, request
 
