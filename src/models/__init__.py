@@ -4,7 +4,6 @@ Database models for the library application.
 
 from datetime import datetime
 from typing import Any, Dict
-import typing
 
 from werkzeug.security import check_password_hash, generate_password_hash
 
@@ -20,7 +19,7 @@ class TimestampMixin:
     )
 
 
-class User(db.Model, TimestampMixin):
+class User(db.Model, TimestampMixin):  # type: ignore[name-defined]
     """User model for library system."""
 
     __tablename__ = "users"
@@ -74,7 +73,7 @@ class User(db.Model, TimestampMixin):
         return user
 
 
-class Book(db.Model, TimestampMixin):
+class Book(db.Model, TimestampMixin):  # type: ignore[name-defined]
     """Book model for library system."""
 
     __tablename__ = "books"
@@ -125,7 +124,7 @@ class Book(db.Model, TimestampMixin):
         )
 
 
-class BookLoan(db.Model, TimestampMixin):
+class BookLoan(db.Model, TimestampMixin):  # type: ignore[name-defined]
     """Book loan tracking model."""
 
     __tablename__ = "book_loans"

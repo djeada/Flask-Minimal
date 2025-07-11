@@ -2,7 +2,7 @@
 Users API endpoints.
 """
 
-from typing import Any, Tuple
+from typing import Tuple
 
 from flask import Blueprint, Response, jsonify, request
 from flask_jwt_extended import jwt_required

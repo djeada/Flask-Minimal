@@ -2,8 +2,6 @@
 CLI commands for the application.
 """
 
-from typing import Any
-
 import click
 from flask import Flask
 
