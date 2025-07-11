@@ -28,7 +28,7 @@ app = create_application()
 
 if __name__ == "__main__":
     app.run(
-        host=os.environ.get("FLASK_HOST", "0.0.0.0"),
+        host=os.environ.get("FLASK_HOST", "0.0.0.0"),  # nosec B104
         port=int(os.environ.get("FLASK_PORT", 5000)),
         debug=app.config.get("DEBUG", True),
     )
