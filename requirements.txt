@@ -42,7 +42,7 @@ celery==5.3.4
 
 # Monitoring & Logging
 structlog==23.2.0
-sentry-sdk[flask]==1.38.0
+sentry-sdk[flask]==1.38.1
 
 # Documentation
 Sphinx==7.2.6
